@@ -1,7 +1,7 @@
 [
     {
-      "username": "admin",
-      "password": "$2y$10$uGa6X3ig/2F6W2cQQ7OKIumJiQT8aOOlI8FTC5aW2pSg3h7WgWNBS",
-      "role": "admin"
+        "username": "admin",
+        "password": "$2y$10$O3n2ogyPlT09Z4AXK7ekYezwNfjTRNv\/YNnq2VYx4OZ0pxvK61Fau",
+        "role": "admin"
     }
-  ]
+]
