@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe游戏嵌入指南 - Free Mini Games</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-top: 30px;
+        }
+        
+        h3 {
+            color: #3498db;
+        }
+        
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        .tip {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>iframe游戏嵌入指南</h1>
+    
+    <p>本指南旨在帮助站长解决在网站中通过iframe嵌入游戏时可能遇到的问题，特别是"黑屏"问题。</p>
+    
+    <h2>常见问题</h2>
+    
+    <h3>1. 游戏黑屏</h3>
+    <p>在网页前端显示黑屏，但在后台预览正常，这通常由以下原因导致：</p>
+    
+    <ul>
+        <li><strong>跨域限制</strong>：游戏提供商设置了X-Frame-Options为SAMEORIGIN，禁止其他网站通过iframe嵌入</li>
+        <li><strong>内容安全策略(CSP)限制</strong>：浏览器因安全策略阻止了iframe加载</li>
+        <li><strong>游戏源链接失效</strong>：iframe中的游戏源URL可能已经失效或变更</li>
+        <li><strong>HTTPS混合内容问题</strong>：如果您的网站是HTTPS，而iframe内容是HTTP，浏览器会阻止加载</li>
+    </ul>
+    
+    <h2>解决方案</h2>
+    
+    <h3>1. 优化iframe属性</h3>
+    <p>使用完整的iframe属性集来提高兼容性：</p>
+    
+    <pre><code>&lt;iframe 
+    src="https://游戏源地址" 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+    frameborder="0" 
+    allow="gamepad *; autoplay; fullscreen" 
+    allowfullscreen
+    sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    importance="high"
+    title="游戏标题"&gt;&lt;/iframe&gt;</code></pre>
+    
+    <div class="tip">
+        <p><strong>提示：</strong> sandbox属性可以微调安全设置，但必须包含allow-scripts和allow-same-origin以确保大多数游戏能正常运行。</p>
+    </div>
+    
+    <h3>2. 选择支持iframe嵌入的游戏源</h3>
+    <p>以下游戏源通常支持iframe嵌入：</p>
+    
+    <table>
+        <tr>
+            <th>游戏源</th>
+            <th>iframe支持</th>
+            <th>示例URL</th>
+        </tr>
+        <tr>
+            <td>CrazyGames</td>
+            <td>✅ 支持</td>
+            <td>https://www.crazygames.com/embed/游戏ID</td>
+        </tr>
+        <tr>
+            <td>Y8</td>
+            <td>✅ 支持</td>
+            <td>https://www.y8.com/embed/游戏ID</td>
+        </tr>
+        <tr>
+            <td>Poki</td>
+            <td>✅ 支持</td>
+            <td>https://game-cdn.poki.com/游戏ID</td>
+        </tr>
+        <tr>
+            <td>Armor Games</td>
+            <td>⚠️ 部分支持</td>
+            <td>根据具体游戏而定</td>
+        </tr>
+        <tr>
+            <td>Miniclip</td>
+            <td>❌ 大多数不支持</td>
+            <td>-</td>
+        </tr>
+    </table>
+    
+    <div class="warning">
+        <p><strong>注意：</strong> 游戏源的政策可能随时变更。如果之前能正常加载的游戏突然出现黑屏，请检查游戏源是否更改了其嵌入政策。</p>
+    </div>
+    
+    <h3>3. 实现错误处理和回退机制</h3>
+    <p>我们已经在网站上实现了游戏加载检测和错误处理机制。这是通过games.js文件自动处理的，它会：</p>
+    
+    <ul>
+        <li>显示加载指示器</li>
+        <li>检测iframe加载失败</li>
+        <li>提供直接访问游戏的链接作为备选</li>
+        <li>允许用户重新加载游戏</li>
+    </ul>
+    
+    <h3>4. 后台测试功能</h3>
+    <p>在添加新游戏或编辑游戏时，使用"测试iframe加载"按钮来验证游戏是否能正常加载。这将帮助您在发布前发现并解决问题。</p>
+    
+    <h2>特定游戏源的嵌入技巧</h2>
+    
+    <h3>CrazyGames</h3>
+    <p>CrazyGames的嵌入URL格式为：</p>
+    <pre><code>https://www.crazygames.com/embed/游戏名-游戏ID</code></pre>
+    
+    <p>您可以从游戏页面的"嵌入"按钮获取正确的嵌入代码。</p>
+    
+    <h3>Y8</h3>
+    <p>Y8游戏的嵌入URL格式为：</p>
+    <pre><code>https://www.y8.com/embed/游戏名</code></pre>
+    
+    <h3>自托管游戏</h3>
+    <p>如果您有游戏文件的授权，可以考虑自托管游戏，这样可以避免跨域问题：</p>
+    
+    <ol>
+        <li>将游戏文件上传到您的服务器</li>
+        <li>使用相对路径或同域URL在iframe中引用游戏</li>
+    </ol>
+    
+    <div class="error">
+        <p><strong>重要：</strong> 确保您有权使用和分发游戏文件。未经授权使用游戏文件可能违反版权法。</p>
+    </div>
+    
+    <h2>高级故障排除</h2>
+    
+    <h3>检查浏览器控制台错误</h3>
+    <p>当游戏无法加载时，检查浏览器控制台(F12)是否有错误消息，常见错误包括：</p>
+    
+    <ul>
+        <li><code>Refused to display 'URL' in a frame because it set 'X-Frame-Options' to 'SAMEORIGIN'</code> - 游戏源不允许在iframe中嵌入</li>
+        <li><code>Mixed Content: The page was loaded over HTTPS, but requested an insecure resource</code> - HTTP/HTTPS混合内容问题</li>
+        <li><code>Content Security Policy</code>相关错误 - CSP限制</li>
+    </ul>
+    
+    <h3>测试游戏在不同浏览器中的行为</h3>
+    <p>某些游戏在不同浏览器中的行为可能不同。测试游戏在Chrome、Firefox、Safari和Edge中的加载情况。</p>
+    
+    <h2>结论</h2>
+    
+    <p>通过优化iframe属性、实现错误处理和选择兼容的游戏源，您可以最大程度地减少游戏黑屏问题。如果特定游戏仍然无法加载，建议尝试其他游戏源或联系游戏提供商获取支持。</p>
+    
+    <p>最后更新：2023年12月15日</p>
+</body>
+</html> 
