@@ -4,14 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris - Free Mini Games</title>
-    <meta name="description" content="Play the classic Tetris game online for free at Free Mini Games. Challenge yourself with this iconic puzzle game!">
+    <meta name="description" content="在Free Mini Games免费在线玩【Tetris】。在这里添加游戏描述，包含游戏类型和玩法介绍。">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <style>
+        /* 防止内容闪烁 */
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body.css-loaded {
+            opacity: 1;
+        }
+        
+        /* 游戏加载动画 */
+        .loading-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        /* 确保游戏iframe始终在上层 */
+        .game-frame iframe {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+    <!-- 基础样式文件 -->
+    <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/dark-theme.css">
     <link rel="stylesheet" href="../css/responsive.css">
-    <!-- 字体图标库 -->
+    <link rel="stylesheet" href="../css/fixes.css">
+    
+    <!-- 头部和导航样式 -->
+    <link rel="stylesheet" href="../css/header-style.css">
+    <link rel="stylesheet" href="../css/nav-style.css">
+    <link rel="stylesheet" href="../css/search-fix.css">
+    <link rel="stylesheet" href="../css/title-fix.css">
+    
+    <!-- 游戏详情页样式 -->
+    <link rel="stylesheet" href="../css/style-overrides.css">
+    <link rel="stylesheet" href="../css/game-cards.css">
+    <link rel="stylesheet" href="../css/category-fix.css">
+    <link rel="stylesheet" href="../css/game-detail.css">
+    <link rel="stylesheet" href="../css/loading-fix.css">
+    <link rel="stylesheet" href="../css/game-detail-nav.css">
+    <link rel="stylesheet" href="../css/nav-hide.css">
+    <link rel="stylesheet" href="../css/header-fix.css">
+    
+    <!-- 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google AdSense代码 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2406571508028686" crossorigin="anonymous"></script>
 </head>
-<body>
-    <!-- 顶部导航栏 -->
+<body class="game-detail-page">
+    <!-- 头部导航 -->
     <header class="site-header">
         <div class="container">
             <div class="logo">
@@ -19,12 +76,6 @@
                     <h1>Free Mini Games</h1>
                 </a>
             </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../games.html" class="active">Games</a></li>
-                </ul>
-            </nav>
             <div class="search-bar">
                 <form action="../search.html" method="get">
                     <input type="text" name="q" placeholder="Search games...">
@@ -37,34 +88,42 @@
         </div>
     </header>
 
-    <!-- 广告位：顶部横幅 -->
-    <div class="ad-banner">
+    <!-- Puzzle导航 -->
+    <section class="categories-nav">
         <div class="container">
-            <div class="ad-container">
-                <p class="ad-text">Ad Space - 728x90</p>
-            </div>
+            <ul class="categories-list category-filter">
+                <li><button onclick="window.location.href='../index.html'" class="category-btn"><i class="fas fa-home"></i> All Games</button></li>
+                <li><button onclick="window.location.href='../index.html?category=action'" class="category-btn">Action</button></li>
+                <li><button onclick="window.location.href='../index.html?category=puzzle'" class="category-btn active">Puzzle</button></li>
+                <li><button onclick="window.location.href='../index.html?category=racing'" class="category-btn">Racing</button></li>
+                <li><button onclick="window.location.href='../index.html?category=sports'" class="category-btn">Sports</button></li>
+                <li><button onclick="window.location.href='../index.html?category=strategy'" class="category-btn">Strategy</button></li>
+                <li><button onclick="window.location.href='../index.html?category=horror'" class="category-btn">Horror</button></li>
+                <li><button onclick="window.location.href='../index.html?category=adventure'" class="category-btn">Adventure</button></li>
+                <li><button onclick="window.location.href='../index.html?category=casual'" class="category-btn">Casual</button></li>
+            </ul>
         </div>
-    </div>
+    </section>
 
-    <!-- 游戏页面内容 -->
+    <!-- 游戏内容区域 -->
     <section class="game-page">
         <div class="container">
             <!-- 游戏标题和面包屑 -->
             <div class="game-header">
                 <h1>Tetris</h1>
                 <div class="breadcrumbs">
-                    <a href="../index.html">Home</a> > 
-                    <a href="../games.html">Games</a> > 
-                    <a href="../games.html?category=puzzle">Puzzle</a> > 
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html">Games</a>
+                    <a href="../index.html?category=puzzle">Puzzle</a>
                     <span>Tetris</span>
                 </div>
             </div>
 
-            <!-- Game Content -->
+            <!-- 游戏内容 -->
             <div class="game-content-wrapper">
-                <!-- Game Main Column -->
+                <!-- 游戏主要内容区 -->
                 <div class="game-main-column">
-                    <!-- Game Frame -->
+                    <!-- 游戏框架 -->
                     <div class="game-frame">
                         <iframe 
                             src="https://www.crazygames.com/embed/tetris" 
@@ -76,173 +135,65 @@
                             referrerpolicy="no-referrer-when-downgrade"
                             importance="high"
                             title="Tetris Online Game"></iframe>
+                        <div class="loading-indicator">
+                            <i class="fas fa-spinner fa-spin fa-3x"></i>
+                            <p>Loading game...</p>
+                        </div>
                     </div>
                     
-                    <!-- Game Controls -->
+                    <!-- 游戏控制区 -->
                     <div class="game-controls">
-                        <button class="control-btn fullscreen-btn">
+                        <button class="control-btn fullscreen-btn" id="fullscreen-btn">
                             <i class="fas fa-expand"></i> Fullscreen
                         </button>
                         <div class="game-info-box">
                             <span class="game-category"><i class="fas fa-tag"></i> Puzzle</span>
-                            <span class="game-rating"><i class="fas fa-star"></i> 4.9</span>
-                            <span class="game-plays"><i class="fas fa-gamepad"></i> 42.1K Plays</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 5</span>
                         </div>
                     </div>
                     
-                    <!-- Game Description -->
-                    <div class="game-description">
-                        <h2>About Tetris</h2>
-                        <p>Tetris is one of the most iconic puzzle games of all time. In this addictive, simple yet challenging game, your goal is to arrange falling tetrominoes (geometric shapes made up of four square blocks) to create complete rows. When a row is completed, it disappears, and you earn points. As the game progresses, the pieces fall faster, making it increasingly difficult to position them correctly. The game ends when the stack of tetrominoes reaches the top of the playing field.</p>
+                    <!-- 游戏描述 -->
+                    <div class="game-description"><p>Tetris是一款经典益智游戏，由俄罗斯程序员Alexey Pajitnov于1984年发明。玩家需要操控从屏幕顶部落下的不同形状的方块（称为"俄罗斯方块"或"Tetriminos"），将它们旋转和移动，使其在底部形成完整的水平行。当一行被完全填满时，该行会消失，玩家获得分数，上方的方块会下落。随着游戏的进行，方块下落的速度会越来越快，增加游戏的难度。游戏结束的条件是方块堆积到屏幕顶部，玩家无法再放置新的方块。</p>
+
+                        <h3>如何游玩</h3>
+                        <p>游戏的目标是通过旋转、移动和放置从屏幕顶部落下的Tetriminos（俄罗斯方块），使它们形成完整的水平行。当一行被完全填满时，该行会消失，你获得分数。游戏会随着时间的推移变得越来越快，挑战你的反应速度和策略能力。</p>
                         
-                        <div class="game-features">
-                            <h3>Features</h3>
-                            <ul>
-                                <li>Classic tetromino shapes: I, J, L, O, S, T, and Z</li>
-                                <li>Progressive difficulty levels</li>
-                                <li>Score tracking and high score system</li>
-                                <li>Line clear animations</li>
-                                <li>Next piece preview</li>
-                                <li>Hold piece functionality</li>
-                                <li>Clean, modern interface</li>
-                            </ul>
-                        </div>
+                        <p>这个版本的Tetris保留了经典游戏的精髓，同时提供了现代化的图形和游戏体验。你可以使用键盘控制方块的移动和旋转，也可以使用屏幕上的控制按钮。</p>
                         
-                        <div class="game-controls-info">
-                            <h3>Controls</h3>
-                            <ul>
-                                <li><span class="key">←</span> Move left</li>
-                                <li><span class="key">→</span> Move right</li>
-                                <li><span class="key">↓</span> Soft drop</li>
-                                <li><span class="key">SPACE</span> Hard drop</li>
-                                <li><span class="key">↑</span> Rotate clockwise</li>
-                                <li><span class="key">Z</span> Rotate counter-clockwise</li>
-                                <li><span class="key">C</span> Hold piece</li>
-                                <li><span class="key">P</span> Pause game</li>
-                            </ul>
-                            <p>Touch controls are also available for mobile devices.</p>
-                        </div>
-                        
-                        <div class="game-trivia">
-                            <h3>Tetris Trivia</h3>
-                            <ul>
-                                <li>Tetris was created by Russian software engineer Alexey Pajitnov in 1984.</li>
-                                <li>The name "Tetris" combines "tetra" (meaning four) and "tennis" (Pajitnov's favorite sport).</li>
-                                <li>It's one of the best-selling video games of all time, with over 202 million copies sold.</li>
-                                <li>The Tetris theme song is based on a Russian folk song called "Korobeiniki".</li>
-                                <li>Scientists have discovered the "Tetris Effect," where people start to see falling blocks in their mind after playing for extended periods.</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="game-notice">
-                            <p><strong>Note:</strong> Game progress is not saved when playing on Free Mini Games. For full experience with saved progress, you may want to play directly on the game provider's website.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Ad Banner -->
-                    <div class="ad-container game-bottom-ad">
-                        <p class="ad-text">Ad Space - 728x90</p>
-                    </div>
-                    
-                    <!-- Similar Games -->
-                    <div class="similar-games">
-                        <h2>Similar Games</h2>
-                        <div class="games-grid">
-                            <div class="game-card">
-                                <a href="traffic-rider.html">
-                                    <div class="game-thumbnail">
-                                        <img src="../images/game-placeholder.jpg" alt="Traffic Rider">
-                                        <div class="game-overlay">
-                                            <div class="play-button">
-                                                <i class="fas fa-play"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="game-info">
-                                        <h3>Traffic Rider</h3>
-                                        <div class="game-meta">
-                                            <span class="game-category">Racing</span>
-                                            <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <div class="game-card">
-                                <a href="sky-riders.html">
-                                    <div class="game-thumbnail">
-                                        <img src="../images/game-placeholder.jpg" alt="Sky Riders">
-                                        <div class="game-overlay">
-                                            <div class="play-button">
-                                                <i class="fas fa-play"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="game-info">
-                                        <h3>Sky Riders</h3>
-                                        <div class="game-meta">
-                                            <span class="game-category">Action</span>
-                                            <span class="game-rating"><i class="fas fa-star"></i> 4.5</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Game Sidebar -->
-                <div class="game-sidebar">
-                    <!-- Sidebar Ad -->
-                    <div class="sidebar-ad">
-                        <p class="ad-text">Ad Space - 300x250</p>
-                    </div>
-                    
-                    <!-- Top Puzzle Games -->
-                    <div class="sidebar-widget top-games">
-                        <h3>Top Puzzle Games</h3>
+                        <h3>游戏技巧</h3>
                         <ul>
-                            <li>
-                                <a href="tetris.html">
-                                    <img src="../images/game-placeholder.jpg" alt="Tetris">
-                                    <div>
-                                        <h4>Tetris</h4>
-                                        <span class="game-rating"><i class="fas fa-star"></i> 4.9</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="traffic-rider.html">
-                                    <img src="../images/game-placeholder.jpg" alt="Traffic Rider">
-                                    <div>
-                                        <h4>Traffic Rider</h4>
-                                        <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
-                                    </div>
-                                </a>
-                            </li>
+                            <li>尽量保持游戏区域的平整，避免出现"洞"</li>
+                            <li>学习如何快速旋转和定位方块</li>
+                            <li>为I形方块（直棒）预留空间，它是清除多行的最佳形状</li>
+                            <li>注意预览窗口中的下一个方块，提前规划</li>
+                            <li>在高级阶段，使用"硬降"（直接将方块放到底部）可以节省时间</li>
                         </ul>
-                    </div>
-                    
-                    <!-- Tall Ad -->
-                    <div class="sidebar-ad tall-ad">
-                        <p class="ad-text">Ad Space - 300x600</p>
-                    </div>
+                        
+                        <p>发布日期: 1984年（原始版本），多次重制<br>
+                        开发者: Alexey Pajitnov（原始版本），现代版本由The Tetris Company授权<br>
+                        平台: 几乎所有电子设备平台，包括网页、手机和游戏机<br>
+                        最后更新: 2023年（本网页版本）</p>
+                        
+                        <p>操作方法: 使用箭头键控制方块移动，上箭头旋转方块，空格键硬降（立即放置）。也可以使用屏幕上的控制按钮。</p>
+                        
+                        <h3>Tetris的影响</h3>
+                        <p>Tetris是有史以来最具影响力的电子游戏之一，已被移植到几乎所有电子设备平台。它以其简单而上瘾的游戏玩法而闻名，被认为是完美的休闲游戏。科学研究表明，玩Tetris可以提高大脑的空间认知能力，甚至可以帮助减轻创伤后应激障碍的症状。</p>
+                        
+                        <p>特点:
+                        <br>- 经典的方块堆叠和消除玩法
+                        <br>- 简单易学，难以精通
+                        <br>- 可调整难度级别
+                        <br>- 支持触屏和键盘控制
+                        <br>- 高分排行榜激励竞争</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Bottom Ad Banner -->
-    <div class="ad-banner">
-        <div class="container">
-            <div class="ad-container">
-                <p class="ad-text">Ad Space - 728x90</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript Files -->
+    <!-- JavaScript文件 -->
     <script src="../js/main.js"></script>
     <script src="../js/games.js"></script>
+    <script src="../js/game-nav.js"></script>
+    <script src="../js/sidebar-games.js"></script>
 </body>
 </html> 

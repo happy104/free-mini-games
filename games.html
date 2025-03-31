@@ -5,13 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Games - Free Mini Games</title>
     <meta name="description" content="Browse and play hundreds of free online games at Free Mini Games. Find action, puzzle, racing, strategy and more games.">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* Prevent content flash during CSS loading */
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body.css-loaded {
+            opacity: 1;
+        }
+    </style>
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/dark-theme.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <!-- 字体图标库 -->
+    <link rel="stylesheet" href="css/fixes.css">
+    <link rel="stylesheet" href="css/header-style.css">
+    <link rel="stylesheet" href="css/nav-style.css">
+    <link rel="stylesheet" href="css/search-fix.css">
+    <link rel="stylesheet" href="css/title-fix.css">
+    <link rel="stylesheet" href="css/style-overrides.css">
+    <link rel="stylesheet" href="css/game-cards.css">
+    <link rel="stylesheet" href="css/category-fix.css">
+    <link rel="stylesheet" href="css/nav-fix.css">
+    <link rel="stylesheet" href="css/edge-fix.css">
+    <link rel="stylesheet" href="css/left-align-fix.css">
+    <link rel="stylesheet" href="css/complete-fix.css">
+    <link rel="stylesheet" href="css/nav-hide.css">
+    <!-- Font Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google AdSense Code -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2406571508028686" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- 顶部导航栏 -->
+    <!-- Header Navigation -->
     <header class="site-header">
         <div class="container">
             <div class="logo">
@@ -31,7 +59,7 @@
         </div>
     </header>
 
-    <!-- 广告位：顶部横幅 -->
+    <!-- Ad Banner: Top -->
     <div class="ad-banner">
         <div class="container">
             <div class="ad-container">
@@ -40,26 +68,26 @@
         </div>
     </div>
 
-    <!-- 游戏分类导航 -->
+    <!-- Game Categories Navigation -->
     <section class="categories-nav">
         <div class="container">
             <div class="categories-wrapper">
-                <ul class="categories-list">
-                    <li><a href="javascript:void(0)" data-category="all" class="category-link active">All Games</a></li>
-                    <li><a href="javascript:void(0)" data-category="action" class="category-link">Action</a></li>
-                    <li><a href="javascript:void(0)" data-category="puzzle" class="category-link">Puzzle</a></li>
-                    <li><a href="javascript:void(0)" data-category="racing" class="category-link">Racing</a></li>
-                    <li><a href="javascript:void(0)" data-category="sports" class="category-link">Sports</a></li>
-                    <li><a href="javascript:void(0)" data-category="strategy" class="category-link">Strategy</a></li>
-                    <li><a href="javascript:void(0)" data-category="horror" class="category-link">Horror</a></li>
-                    <li><a href="javascript:void(0)" data-category="adventure" class="category-link">Adventure</a></li>
-                    <li><a href="javascript:void(0)" data-category="casual" class="category-link">Casual</a></li>
+                <ul class="categories-list category-filter">
+                    <li><button data-category="all" class="active">All Games</button></li>
+                    <li><button data-category="action">Action</button></li>
+                    <li><button data-category="puzzle">Puzzle</button></li>
+                    <li><button data-category="racing">Racing</button></li>
+                    <li><button data-category="sports">Sports</button></li>
+                    <li><button data-category="strategy">Strategy</button></li>
+                    <li><button data-category="horror">Horror</button></li>
+                    <li><button data-category="adventure">Adventure</button></li>
+                    <li><button data-category="casual">Casual</button></li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- 页面标题区域 -->
+    <!-- Page Title Area -->
     <section class="categories-section">
         <div class="container">
             <div class="section-header">
@@ -67,531 +95,37 @@
             </div>
 
             <div class="games-wrapper">
-                <!-- 游戏列表区域 -->
-                <div class="games-grid">
-                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/traffic-rider.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743257697685.jpg" alt="Traffic Rider">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Traffic Rider</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 5</span>
-                            </div>
-                        </div>
-                    </a>
+                <!-- Games List Area -->
+                <div class="games-grid" id="games-container">
+                    <!-- Game cards will be loaded from games-data.json via JavaScript -->
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin fa-2x"></i>
+                        <p>Loading games...</p>
+                    </div>
                 </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/sky-riders.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743260555299.jpg" alt="Sky Riders">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Sky Riders</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 5</span>
-                            </div>
-                        </div>
-                    </a>
+                
+                <!-- Loading more games indicator -->
+                <div id="loading-indicator" style="display: none; text-align: center; padding: 20px;">
+                    <i class="fas fa-spinner fa-spin fa-2x"></i>
+                    <p>Loading more games...</p>
                 </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="puzzle">
-                    <a href="games/mahjongg-solitaire.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743264862795.jpg" alt="Mahjongg Solitaire">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Mahjongg Solitaire</h3>
-                            <div class="game-meta">
-                                <span class="game-category">益智游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
-                            </div>
-                        </div>
-                    </a>
+                
+                <!-- Load more button -->
+                <div class="load-more-container">
+                    <button id="load-more-btn" class="load-more-btn">
+                        <i class="fas fa-plus-circle"></i> Load More Games
+                    </button>
                 </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="puzzle">
-                    <a href="games/farm-merge-valley.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743265320769.jpg" alt="Farm Merge Valley">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Farm Merge Valley</h3>
-                            <div class="game-meta">
-                                <span class="game-category">益智游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.4</span>
-                            </div>
-                        </div>
-                    </a>
+                
+                <!-- No more games message -->
+                <div id="no-more-games" style="display: none; text-align: center; padding: 20px; color: #888;">
+                    <p>You've reached the end. No more games to load.</p>
                 </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="puzzle">
-                    <a href="games/words-of-wonders.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743266067856.jpg" alt="Words of Wonders">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Words of Wonders</h3>
-                            <div class="game-meta">
-                                <span class="game-category">益智游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.7</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/smash-karts.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743315018354.jpg" alt="Smash Karts">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Smash Karts</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 5</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/sandbox-city.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743315600688.jpg" alt="Sandbox City">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Sandbox City</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.7</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/polytrack.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743315719059.jpg" alt="PolyTrack">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>PolyTrack</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/parking-jam.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743315804291.jpg" alt="Parking Jam">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Parking Jam</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.7</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/night-city-racing.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743315953990.jpg" alt="Night City Racing">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Night City Racing</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/demolition-derby-3.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743316109842.jpg" alt="Demolition Derby 3">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Demolition Derby 3</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.4</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/doodle-road.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743316223927.jpg" alt="Doodle Road">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Doodle Road</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 5</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/rally-racer-dirt.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743316340014.jpg" alt="Rally Racer Dirt">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Rally Racer Dirt</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 5</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/assault-bots.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743316518137.jpg" alt="Assault Bots">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Assault Bots</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.5</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="racing">
-                    <a href="games/mr-racer.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743316631415.jpg" alt="Mr. Racer">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Mr. Racer</h3>
-                            <div class="game-meta">
-                                <span class="game-category">竞速游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 5</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="horror">
-                    <a href="games/room-escape-strange-case.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743316826103.jpg" alt="Room Escape: Strange Case">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Room Escape: Strange Case</h3>
-                            <div class="game-meta">
-                                <span class="game-category">恐怖游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="horror">
-                    <a href="games/game-911-prey.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743316911733.jpg" alt="911: Prey">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>911: Prey</h3>
-                            <div class="game-meta">
-                                <span class="game-category">恐怖游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 5</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="horror">
-                    <a href="games/escape-room-strange-case-2.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743316981475.jpg" alt="Escape Room: Strange Case 2">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Escape Room: Strange Case 2</h3>
-                            <div class="game-meta">
-                                <span class="game-category">恐怖游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.7</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="horror">
-                    <a href="games/fnaf-shooter.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743317052356.jpg" alt="FNaF Shooter">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>FNaF Shooter</h3>
-                            <div class="game-meta">
-                                <span class="game-category">恐怖游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.6</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="horror">
-                    <a href="games/monster-makeup-3d.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743317148066.jpg" alt="Monster Makeup 3D">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Monster Makeup 3D</h3>
-                            <div class="game-meta">
-                                <span class="game-category">恐怖游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 5</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="horror">
-                    <a href="games/horror-tale.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743317207148.jpg" alt="Horror Tale">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Horror Tale</h3>
-                            <div class="game-meta">
-                                <span class="game-category">恐怖游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="horror">
-                    <a href="games/game-911-cannibal.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743317266122.jpg" alt="911: Cannibal">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>911: Cannibal</h3>
-                            <div class="game-meta">
-                                <span class="game-category">恐怖游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.9</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="horror">
-                    <a href="games/diner-in-the-storm.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743317315357.jpg" alt="Diner in the Storm">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Diner in the Storm</h3>
-                            <div class="game-meta">
-                                <span class="game-category">恐怖游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="horror">
-                    <a href="games/haunted-school.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743317376675.jpg" alt="Haunted School">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Haunted School</h3>
-                            <div class="game-meta">
-                                <span class="game-category">恐怖游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.6</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="horror">
-                    <a href="games/exhibit-of-sorrows.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743317420879.jpg" alt="Exhibit of Sorrows">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Exhibit of Sorrows</h3>
-                            <div class="game-meta">
-                                <span class="game-category">恐怖游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 5</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="horror">
-                    <a href="games/scary-horror-escape-room.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/1743317478830.jpg" alt="Scary Horror Escape Room">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>Scary Horror Escape Room</h3>
-                            <div class="game-meta">
-                                <span class="game-category">恐怖游戏</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                </div></section>
+            </div>
+        </div>
+    </section>
 
-    <!-- 底部广告位 -->
+    <!-- Ad Banner: Bottom -->
     <div class="ad-banner">
         <div class="container">
             <div class="ad-container">
@@ -600,7 +134,49 @@
         </div>
     </div>
 
+    <!-- Footer Area -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Free Mini Games. All rights reserved.</p>
+                <ul class="footer-links">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
     <!-- JavaScript Files -->
     <script src="js/main.js"></script>
+    <script src="js/games-loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update page title
+            const updatePageTitle = function(category) {
+                const sectionTitle = document.querySelector('.section-title');
+                if (sectionTitle) {
+                    if (category === 'all') {
+                        sectionTitle.textContent = 'All Games';
+                    } else {
+                        // Capitalize first letter and add "Games"
+                        const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
+                        sectionTitle.textContent = categoryName + ' Games';
+                    }
+                }
+            };
+            
+            // Listen for category button clicks
+            const categoryButtons = document.querySelectorAll('.category-filter button');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    updatePageTitle(category);
+                });
+            });
+        });
+    </script>
 </body>
 </html> 

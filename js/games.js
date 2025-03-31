@@ -310,4 +310,352 @@ document.head.appendChild(style);
 // 初始化时显示所有游戏卡片
 gameCards.forEach(card => {
     card.classList.add('visible');
+});
+
+/**
+ * Free Mini Games - Game Page JavaScript
+ * Functionality for individual game pages
+ * 2024-04-02
+ */
+
+// 等待页面加载完成
+document.addEventListener('DOMContentLoaded', function() {
+    initGamePage();
+});
+
+// 游戏页面初始化
+function initGamePage() {
+    setupFullscreen();
+    loadRelatedGames();
+    setupGameLoading();
+    trackGameplay();
+}
+
+// 设置全屏功能
+function setupFullscreen() {
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    if (!fullscreenBtn) return;
+    
+    fullscreenBtn.addEventListener('click', function() {
+        const iframe = document.querySelector('.game-frame iframe');
+        if (!iframe) return;
+        
+        if (iframe.requestFullscreen) {
+            iframe.requestFullscreen();
+        } else if (iframe.mozRequestFullScreen) { // Firefox
+            iframe.mozRequestFullScreen();
+        } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari, Opera
+            iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) { // IE/Edge
+            iframe.msRequestFullscreen();
+        }
+    });
+}
+
+// 加载相关游戏
+function loadRelatedGames() {
+    const similarGamesContainer = document.querySelector('.similar-games .games-grid');
+    if (!similarGamesContainer) return;
+    
+    // 获取当前游戏类别
+    const currentCategory = document.querySelector('.game-category').textContent.trim();
+    
+    // 这里应该有一个AJAX调用来获取相关游戏
+    // 为了简单起见，我们模拟这个过程
+    
+    // 清除加载状态
+    similarGamesContainer.innerHTML = '<div class="loading-message">Loading similar games...</div>';
+    
+    // 模拟加载延迟
+    setTimeout(function() {
+        // 实际项目中这里应该是从服务器获取数据
+        similarGamesContainer.innerHTML = `
+            <div class="game-card">
+                <a href="../games/sandbox-city.html">
+                    <div class="game-thumbnail">
+                        <img src="../images/games/1743317823377.jpg" alt="Sandbox City">
+                        <div class="game-overlay">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>Sandbox City</h3>
+                        <div class="game-meta">
+                            <span class="game-category">Action</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="game-card">
+                <a href="../games/squid-game-online-new.html">
+                    <div class="game-thumbnail">
+                        <img src="../images/games/1743317727556.jpg" alt="Squid Game Online">
+                        <div class="game-overlay">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3>Squid Game Online</h3>
+                        <div class="game-meta">
+                            <span class="game-category">Action</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 5</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        `;
+    }, 1000);
+    
+    // 加载侧边栏热门游戏
+    loadTopGames(currentCategory);
+}
+
+// 加载该类别热门游戏
+function loadTopGames(category) {
+    const topGamesContainer = document.querySelector('.top-games ul');
+    if (!topGamesContainer) return;
+    
+    // 清除加载状态
+    topGamesContainer.innerHTML = '<li>Loading top games...</li>';
+    
+    // 模拟加载延迟
+    setTimeout(function() {
+        // 实际项目中这里应该是从服务器获取数据
+        topGamesContainer.innerHTML = `
+            <li>
+                <a href="../games/sandbox-city.html">
+                    <img src="../images/games/1743317823377.jpg" alt="Sandbox City">
+                    <div>
+                        <h4>Sandbox City</h4>
+                        <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="../games/squid-game-online-new.html">
+                    <img src="../images/games/1743317727556.jpg" alt="Squid Game Online">
+                    <div>
+                        <h4>Squid Game Online</h4>
+                        <span class="game-rating"><i class="fas fa-star"></i> 5</span>
+                    </div>
+                </a>
+            </li>
+        `;
+    }, 800);
+}
+
+// 设置游戏加载
+function setupGameLoading() {
+    const iframe = document.querySelector('.game-frame iframe');
+    const loadingIndicator = document.querySelector('.loading-indicator');
+    
+    if (!iframe || !loadingIndicator) return;
+    
+    // 强制隐藏加载指示器
+    function hideLoader() {
+        // 使用多种方式确保加载指示器被隐藏
+        loadingIndicator.style.display = 'none';
+        loadingIndicator.style.opacity = '0';
+        loadingIndicator.style.visibility = 'hidden';
+        loadingIndicator.style.zIndex = '-1';
+        
+        // 为游戏iframe添加可见类
+        iframe.classList.add('game-loaded');
+        
+        // 添加自定义事件表示游戏已加载
+        document.dispatchEvent(new CustomEvent('gameLoaded'));
+    }
+    
+    // 监听iframe加载完成
+    iframe.addEventListener('load', function() {
+        // 延迟1秒后隐藏加载器，确保游戏内容已渲染
+        setTimeout(hideLoader, 1000);
+    });
+    
+    // 监听iframe错误
+    iframe.addEventListener('error', function() {
+        console.log('游戏iframe加载失败');
+        // 仍然隐藏加载器，但显示一个错误消息
+        hideLoader();
+        
+        // 创建错误消息元素
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'game-load-error';
+        errorMsg.innerHTML = `
+            <div class="error-content">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3>游戏加载出现问题</h3>
+                <p>请尝试刷新页面或稍后再试</p>
+                <button onclick="location.reload()">刷新页面</button>
+            </div>
+        `;
+        
+        // 添加到游戏框架
+        iframe.parentNode.appendChild(errorMsg);
+    });
+    
+    // 确保加载指示器最终会被隐藏，无论什么情况
+    // 减少超时时间到5秒
+    setTimeout(hideLoader, 5000);
+    
+    // 监听window加载完成事件
+    window.addEventListener('load', function() {
+        // 延迟3秒后再次检查并隐藏加载器
+        setTimeout(hideLoader, 3000);
+    });
+    
+    // 确保页面可见时加载器被隐藏
+    document.addEventListener('visibilitychange', function() {
+        if (!document.hidden) {
+            setTimeout(hideLoader, 1000);
+        }
+    });
+}
+
+// 游戏游玩次数统计
+function trackGameplay() {
+    // 实际项目中这里应该发送请求到服务器记录游戏播放次数
+    console.log('Game play tracked');
+}
+
+// 添加css-loaded class到body
+window.addEventListener('load', function() {
+    document.body.classList.add('css-loaded');
+});
+
+// 游戏数据
+const games = [
+    {
+        title: "Defender Idle 2",
+        slug: "defender-idle-2",
+        categories: ["Action", "Strategy", "Idle"],
+        description: "An endless idle defense game where you place turrets and upgrade your defenses."
+    },
+    {
+        title: "Traffic Rider",
+        slug: "traffic-rider",
+        categories: ["Racing", "Action"],
+        description: "Race through traffic in this fast-paced motorcycle racing game."
+    },
+    {
+        title: "Tetris Classic",
+        slug: "tetris-classic",
+        categories: ["Puzzle", "Classic"],
+        description: "The classic block-stacking puzzle game that never gets old."
+    },
+    {
+        title: "Sandbox City",
+        slug: "sandbox-city",
+        categories: ["Action", "Adventure", "Simulation"],
+        description: "Build and explore your own city in this open-world sandbox game."
+    },
+    {
+        title: "Squid Game Challenge",
+        slug: "squid-game-challenge",
+        categories: ["Action", "Adventure"],
+        description: "Based on the popular TV show, complete the challenges to win the prize."
+    },
+    {
+        title: "Zombie Survival",
+        slug: "zombie-survival",
+        categories: ["Action", "Horror", "Survival"],
+        description: "Survive the zombie apocalypse in this intense survival game."
+    },
+    {
+        title: "Bubble Shooter",
+        slug: "bubble-shooter",
+        categories: ["Puzzle", "Casual"],
+        description: "Match and pop colorful bubbles in this addictive puzzle game."
+    },
+    {
+        title: "Basketball Pro",
+        slug: "basketball-pro",
+        categories: ["Sports", "Action"],
+        description: "Show your basketball skills and become the champion."
+    },
+    {
+        title: "Tank Battle",
+        slug: "tank-battle",
+        categories: ["Action", "Strategy"],
+        description: "Command your tank and destroy enemy forces in this tactical battle game."
+    },
+    {
+        title: "Fishing Master",
+        slug: "fishing-master",
+        categories: ["Casual", "Simulation"],
+        description: "Relax and catch various fish species in beautiful locations."
+    }
+];
+
+// 在详情页加载相似游戏
+document.addEventListener('DOMContentLoaded', function() {
+    // 检查是否在游戏详情页
+    const similarGamesContainer = document.querySelector('.similar-games .games-grid');
+    if (!similarGamesContainer) return;
+    
+    // 获取当前游戏标题
+    const currentGameTitle = document.querySelector('.game-header h1').textContent.trim();
+    
+    // 获取当前游戏类别
+    const gameCategory = document.querySelector('.game-category').textContent.replace(/^\s*\S+\s+/, '').trim();
+    
+    // 过滤出同类别但不是当前游戏的游戏
+    let similarGames = games.filter(game => {
+        return game.categories.includes(gameCategory) && game.title !== currentGameTitle;
+    });
+    
+    // 如果同类别游戏不足6个，添加其他类别的随机游戏补足
+    if (similarGames.length < 6) {
+        const otherGames = games.filter(game => {
+            return !game.categories.includes(gameCategory) && game.title !== currentGameTitle;
+        });
+        
+        // 随机打乱其他游戏
+        otherGames.sort(() => Math.random() - 0.5);
+        
+        // 补足到6个
+        similarGames = [...similarGames, ...otherGames.slice(0, 6 - similarGames.length)];
+    }
+    
+    // 限制为最多6个，并随机打乱顺序
+    similarGames = similarGames.slice(0, 6).sort(() => Math.random() - 0.5);
+    
+    // 生成HTML并添加到容器
+    if (similarGames.length > 0) {
+        const similarGamesHTML = similarGames.map(game => {
+            return `
+                <div class="game-card">
+                    <div class="game-card-inner">
+                        <a href="${game.slug}.html" class="game-link">
+                            <div class="game-thumbnail">
+                                <img src="../img/game-placeholder.jpg" alt="${game.title}" onerror="this.src='../img/game-placeholder.jpg'">
+                                <div class="game-overlay">
+                                    <span class="play-now">Play Now</span>
+                                </div>
+                            </div>
+                            <div class="game-info">
+                                <h3 class="game-title">${game.title}</h3>
+                                <div class="game-meta">
+                                    <span class="game-category">${game.categories[0]}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        similarGamesContainer.innerHTML = similarGamesHTML;
+    } else {
+        // 如果没有相似游戏，隐藏整个相似游戏部分
+        const similarGamesSection = document.querySelector('.similar-games');
+        if (similarGamesSection) {
+            similarGamesSection.style.display = 'none';
+        }
+    }
 }); 

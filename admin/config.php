@@ -34,7 +34,9 @@ if (!file_exists(CATEGORIES_DATA_FILE)) {
         ['id' => 'racing', 'name' => '竞速游戏'],
         ['id' => 'sports', 'name' => '体育游戏'],
         ['id' => 'strategy', 'name' => '策略游戏'],
-        ['id' => 'horror', 'name' => '恐怖游戏']
+        ['id' => 'horror', 'name' => '恐怖游戏'],
+        ['id' => 'adventure', 'name' => '冒险游戏'],
+        ['id' => 'casual', 'name' => '休闲游戏']
     ];
     file_put_contents(CATEGORIES_DATA_FILE, json_encode($defaultCategories, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 }

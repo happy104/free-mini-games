@@ -95,12 +95,14 @@ function getAllCategories() {
         if ($categories === null || !is_array($categories)) {
             // JSON解析失败或结果不是数组，返回默认分类
             return [
-                ['id' => 'action', 'name' => '动作游戏'],
-                ['id' => 'puzzle', 'name' => '益智游戏'],
-                ['id' => 'racing', 'name' => '竞速游戏'],
-                ['id' => 'sports', 'name' => '体育游戏'],
-                ['id' => 'strategy', 'name' => '策略游戏'],
-                ['id' => 'horror', 'name' => '恐怖游戏']
+                ['id' => 'action', 'name' => 'Action Games'],
+                ['id' => 'puzzle', 'name' => 'Puzzle Games'],
+                ['id' => 'racing', 'name' => 'Racing Games'],
+                ['id' => 'sports', 'name' => 'Sports Games'],
+                ['id' => 'strategy', 'name' => 'Strategy Games'],
+                ['id' => 'horror', 'name' => 'Horror Games'],
+                ['id' => 'adventure', 'name' => 'Adventure Games'],
+                ['id' => 'casual', 'name' => 'Casual Games']
             ];
         }
         
@@ -109,12 +111,14 @@ function getAllCategories() {
     
     // 文件不存在，返回默认分类
     return [
-        ['id' => 'action', 'name' => '动作游戏'],
-        ['id' => 'puzzle', 'name' => '益智游戏'],
-        ['id' => 'racing', 'name' => '竞速游戏'],
-        ['id' => 'sports', 'name' => '体育游戏'],
-        ['id' => 'strategy', 'name' => '策略游戏'],
-        ['id' => 'horror', 'name' => '恐怖游戏']
+        ['id' => 'action', 'name' => 'Action Games'],
+        ['id' => 'puzzle', 'name' => 'Puzzle Games'],
+        ['id' => 'racing', 'name' => 'Racing Games'],
+        ['id' => 'sports', 'name' => 'Sports Games'],
+        ['id' => 'strategy', 'name' => 'Strategy Games'],
+        ['id' => 'horror', 'name' => 'Horror Games'],
+        ['id' => 'adventure', 'name' => 'Adventure Games'],
+        ['id' => 'casual', 'name' => 'Casual Games']
     ];
 }
 
@@ -168,7 +172,7 @@ function generateGamePage($game) {
     
     // 获取分类信息
     $category = getCategory($gameCategory);
-    $categoryName = $category ? $category['name'] : '未分类';
+    $categoryName = $category ? $category['name'] : 'Uncategorized';
     
     // 读取游戏页面模板
     $templatePath = ADMIN_PATH . '/template/game-template.html';
@@ -214,12 +218,70 @@ function createGameTemplate() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{GAME_TITLE} - Free Mini Games</title>
     <meta name="description" content="Play {GAME_TITLE} online for free at Free Mini Games. {GAME_DESCRIPTION}">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <style>
+        /* 防止内容闪烁 */
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body.css-loaded {
+            opacity: 1;
+        }
+        
+        /* 游戏加载动画 */
+        .loading-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        /* 确保游戏iframe始终在上层 */
+        .game-frame iframe {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+    <!-- 基础样式文件 -->
+    <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/dark-theme.css">
     <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/fixes.css">
+    
+    <!-- 头部和导航样式 -->
+    <link rel="stylesheet" href="../css/header-style.css">
+    <link rel="stylesheet" href="../css/nav-style.css">
+    <link rel="stylesheet" href="../css/search-fix.css">
+    <link rel="stylesheet" href="../css/title-fix.css">
+    
+    <!-- 游戏详情页样式 -->
+    <link rel="stylesheet" href="../css/style-overrides.css">
+    <link rel="stylesheet" href="../css/game-cards.css">
+    <link rel="stylesheet" href="../css/category-fix.css">
+    <link rel="stylesheet" href="../css/game-detail.css">
+    <link rel="stylesheet" href="../css/loading-fix.css">
+    <link rel="stylesheet" href="../css/game-detail-nav.css">
+    <link rel="stylesheet" href="../css/nav-hide.css">
+    <link rel="stylesheet" href="../css/header-fix.css">
+    
+    <!-- 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google AdSense代码 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2406571508028686" crossorigin="anonymous"></script>
 </head>
-<body>
-    <!-- Header Navigation -->
+<body class="game-detail-page">
+    <!-- 头部导航 -->
     <header class="site-header">
         <div class="container">
             <div class="logo">
@@ -227,12 +289,6 @@ function createGameTemplate() {
                     <h1>Free Mini Games</h1>
                 </a>
             </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../games.html" class="active">Games</a></li>
-                </ul>
-            </nav>
             <div class="search-bar">
                 <form action="../search.html" method="get">
                     <input type="text" name="q" placeholder="Search games...">
@@ -245,31 +301,43 @@ function createGameTemplate() {
         </div>
     </header>
 
-    <!-- Top Ad Banner -->
-    <div class="ad-banner">
+    <!-- 游戏分类导航 -->
+    <section class="categories-nav">
         <div class="container">
-            <div class="ad-container">
-                <p class="ad-text">Ad Space - 728x90</p>
-            </div>
+            <ul class="categories-list category-filter">
+                <li><button onclick="window.location.href='../index.html'" class="category-btn"><i class="fas fa-home"></i> All Games</button></li>
+                <!-- 注意：将游戏所属的分类按钮标记为active -->
+                <li><button onclick="window.location.href='../index.html?category=action'" class="category-btn">Action</button></li>
+                <li><button onclick="window.location.href='../index.html?category=puzzle'" class="category-btn">Puzzle</button></li>
+                <li><button onclick="window.location.href='../index.html?category=racing'" class="category-btn">Racing</button></li>
+                <li><button onclick="window.location.href='../index.html?category=sports'" class="category-btn">Sports</button></li>
+                <li><button onclick="window.location.href='../index.html?category=strategy'" class="category-btn">Strategy</button></li>
+                <li><button onclick="window.location.href='../index.html?category=horror'" class="category-btn">Horror</button></li>
+                <li><button onclick="window.location.href='../index.html?category=adventure'" class="category-btn">Adventure</button></li>
+                <li><button onclick="window.location.href='../index.html?category=casual'" class="category-btn">Casual</button></li>
+            </ul>
         </div>
-    </div>
+    </section>
 
-    <!-- Game Page Content -->
+    <!-- 游戏内容区域 -->
     <section class="game-page">
         <div class="container">
-            <!-- Game Title and Breadcrumbs -->
+            <!-- 游戏标题和面包屑 -->
             <div class="game-header">
                 <h1>{GAME_TITLE}</h1>
                 <div class="breadcrumbs">
-                    <a href="../index.html">Home</a> > <a href="../games.html">Games</a> > <a href="../games.html?category={GAME_CATEGORY}">{GAME_CATEGORY}</a> > <span>{GAME_TITLE}</span>
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html">Games</a>
+                    <a href="../index.html?category={GAME_CATEGORY}">{GAME_CATEGORY}</a>
+                    <span>{GAME_TITLE}</span>
                 </div>
             </div>
 
-            <!-- Game Content -->
+            <!-- 游戏内容 -->
             <div class="game-content-wrapper">
-                <!-- Game Main Column -->
+                <!-- 游戏主要内容区 -->
                 <div class="game-main-column">
-                    <!-- Game Frame -->
+                    <!-- 游戏框架 -->
                     <div class="game-frame">
                         <iframe 
                             src="{GAME_EMBED_URL}" 
@@ -281,80 +349,45 @@ function createGameTemplate() {
                             referrerpolicy="no-referrer-when-downgrade"
                             importance="high"
                             title="{GAME_TITLE} Online Game"></iframe>
+                        <div class="loading-indicator">
+                            <i class="fas fa-spinner fa-spin fa-3x"></i>
+                            <p>Loading game...</p>
+                        </div>
                     </div>
                     
-                    <!-- Game Controls -->
+                    <!-- 游戏控制区 -->
                     <div class="game-controls">
-                        <button class="control-btn fullscreen-btn">
+                        <button class="control-btn fullscreen-btn" id="fullscreen-btn">
                             <i class="fas fa-expand"></i> Fullscreen
                         </button>
                         <div class="game-info-box">
                             <span class="game-category"><i class="fas fa-tag"></i> {GAME_CATEGORY}</span>
                             <span class="game-rating"><i class="fas fa-star"></i> {GAME_RATING}</span>
-                            <span class="game-plays"><i class="fas fa-gamepad"></i> 0 Plays</span>
                         </div>
                     </div>
                     
-                    <!-- Game Description -->
+                    <!-- 游戏描述 -->
                     <div class="game-description">
-                        <h2>About {GAME_TITLE}</h2>
                         <p>{GAME_DESCRIPTION}</p>
                         
-                        <div class="game-notice">
-                            <p><strong>Note:</strong> Game progress is not saved when playing on Free Mini Games. For full experience with saved progress, you may want to play directly on the game provider's website.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Ad Banner -->
-                    <div class="ad-container game-bottom-ad">
-                        <p class="ad-text">Ad Space - 728x90</p>
-                    </div>
-                    
-                    <!-- Similar Games -->
-                    <div class="similar-games">
-                        <h2>Similar Games</h2>
-                        <div class="games-grid">
-                            <!-- Similar games will be added here -->
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Game Sidebar -->
-                <div class="game-sidebar">
-                    <!-- Sidebar Ad -->
-                    <div class="sidebar-ad">
-                        <p class="ad-text">Ad Space - 300x250</p>
-                    </div>
-                    
-                    <!-- Top Games -->
-                    <div class="sidebar-widget top-games">
-                        <h3>Top {GAME_CATEGORY} Games</h3>
-                        <ul>
-                            <!-- Top games in the same category will be added here -->
-                        </ul>
-                    </div>
-                    
-                    <!-- Tall Ad -->
-                    <div class="sidebar-ad tall-ad">
-                        <p class="ad-text">Ad Space - 300x600</p>
+                        <p>操作方法: 根据游戏类型而定，通常使用鼠标点击或键盘方向键控制。</p>
+                        
+                        <p>特点:
+                        <br>- 免费在线游戏，无需下载
+                        <br>- 支持全屏模式
+                        <br>- 流畅的游戏体验
+                        <br>- 适合所有年龄段的玩家</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Bottom Ad Banner -->
-    <div class="ad-banner">
-        <div class="container">
-            <div class="ad-container">
-                <p class="ad-text">Ad Space - 728x90</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- JavaScript Files -->
+    <!-- JavaScript文件 -->
     <script src="../js/main.js"></script>
     <script src="../js/games.js"></script>
+    <script src="../js/game-nav.js"></script>
+    <script src="../js/sidebar-games.js"></script>
 </body>
 </html>
 HTML;
@@ -378,186 +411,135 @@ function updateGamesList() {
 
 // 更新首页热门游戏
 function updateHomepageFeaturedGames() {
+    // 获取所有游戏
+    $games = getAllGames();
+    
+    // 随机排序所有游戏
+    shuffle($games);
+    
+    // 生成游戏数据的JSON文件
+    $gameDataPath = ROOT_PATH . '/js/games-data.json';
+    
+    // 准备游戏数据，只包含前端需要的字段
+    $gameDataForJson = [];
+    foreach ($games as $game) {
+        $category = getCategory($game['category']);
+        $categoryName = $category ? $category['name'] : 'Uncategorized';
+        
+        $gameDataForJson[] = [
+            'id' => $game['id'],
+            'title' => $game['title'],
+            'category' => $game['category'],
+            'categoryName' => $categoryName,
+            'rating' => $game['rating'],
+            'thumbnail' => $game['thumbnail']
+        ];
+    }
+    
+    // 添加时间戳到数据中，确保内容发生变化
+    $dataWithTimestamp = [
+        'timestamp' => time(),
+        'games' => $gameDataForJson
+    ];
+    
+    // 保存JSON数据文件
+    $jsonData = json_encode($dataWithTimestamp, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    file_put_contents($gameDataPath, $jsonData);
+    
+    // 确保index.html中有游戏数据加载的脚本
     $homepagePath = ROOT_PATH . '/index.html';
     
     if (!file_exists($homepagePath)) {
         return false;
     }
     
-    // 获取所有游戏
-    $games = getAllGames();
-    
-    // 显示所有游戏（按添加顺序的最新游戏排在前面）
-    $featuredGames = array_reverse($games);
-    
     // 读取首页内容
     $homepageContent = file_get_contents($homepagePath);
     
-    // 定位游戏数据区域
-    $gameDataStart = strpos($homepageContent, '<div id="game-data"');
-    if ($gameDataStart === false) {
-        // 如果找不到游戏数据区域，尝试添加它
-        $addPoint = strpos($homepageContent, '<!-- JavaScript Files -->');
-        if ($addPoint === false) {
-            $addPoint = strpos($homepageContent, '</body>');
-            if ($addPoint === false) {
-                return false;
-            }
+    // 检查是否已有<script src="js/games-loader.js"></script>
+    if (strpos($homepageContent, 'games-loader.js') === false) {
+        // 在JavaScript文件加载部分添加我们的新脚本
+        $scriptInsertPoint = strpos($homepageContent, '<!-- JavaScript Files -->');
+        if ($scriptInsertPoint === false) {
+            $scriptInsertPoint = strpos($homepageContent, '</body>');
         }
         
-        // 创建新的游戏数据区域
-        $gameDataHtml = '
-    <!-- Game cards hidden data for infinite-scroll.js to load -->
-    <div id="game-data" style="display: none;">';
-        
-        // 在JavaScript前插入游戏数据区域
-        $homepageContent = substr_replace($homepageContent, $gameDataHtml, $addPoint, 0);
-        $gameDataStart = strpos($homepageContent, '<div id="game-data"');
-        
-        // 更新位置，为结束标签位置
-        $addPoint += strlen($gameDataHtml);
-        $homepageContent = substr_replace($homepageContent, "\n    </div>\n\n", $addPoint, 0);
+        if ($scriptInsertPoint !== false) {
+            $scriptTag = "\n<script src=\"js/games-loader.js\"></script>\n";
+            $homepageContent = substr_replace($homepageContent, $scriptTag, $scriptInsertPoint, 0);
+            file_put_contents($homepagePath, $homepageContent);
+        }
     }
     
-    // 查找游戏数据区开始和结束位置
-    $dataStart = strpos($homepageContent, '>', $gameDataStart) + 1;
-    $dataEnd = strpos($homepageContent, '</div>', $dataStart);
-    
-    if ($dataStart === false || $dataEnd === false) {
-        return false;
-    }
-    
-    // 生成游戏卡片HTML
-    $gameCardsHtml = "\n";
-    
-    foreach ($featuredGames as $game) {
-        $category = getCategory($game['category']);
-        $categoryName = $category ? $category['name'] : 'Uncategorized';
+    // 检查并清理旧的游戏数据区域
+    $gameDataStart = strpos($homepageContent, '<div id="game-data"');
+    if ($gameDataStart !== false) {
+        $dataStart = strpos($homepageContent, '>', $gameDataStart) + 1;
+        $dataEnd = strpos($homepageContent, '</div>', $dataStart);
         
-        $gameCardsHtml .= <<<HTML
-        <!-- Game Card -->
-        <div class="game-card" data-category="{$game['category']}">
-            <a href="games/{$game['id']}.html">
-                <div class="game-thumbnail">
-                    <img src="images/games/{$game['thumbnail']}" alt="{$game['title']}">
-                    <div class="game-overlay">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="game-info">
-                    <h3>{$game['title']}</h3>
-                    <div class="game-meta">
-                        <span class="game-category">{$categoryName}</span>
-                        <span class="game-rating"><i class="fas fa-star"></i> {$game['rating']}</span>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-HTML;
+        if ($dataStart !== false && $dataEnd !== false) {
+            // 清空游戏数据区域，但保留div标签
+            $newHomepageContent = substr($homepageContent, 0, $dataStart);
+            $newHomepageContent .= "\n        <!-- Game data moved to js/games-data.json file -->\n    ";
+            $newHomepageContent .= substr($homepageContent, $dataEnd);
+            file_put_contents($homepagePath, $newHomepageContent);
+        }
     }
-    
-    // 替换游戏数据内容
-    $newHomepageContent = substr($homepageContent, 0, $dataStart);
-    $newHomepageContent .= $gameCardsHtml;
-    $newHomepageContent .= substr($homepageContent, $dataEnd);
-    
-    // 保存更新后的首页
-    file_put_contents($homepagePath, $newHomepageContent);
     
     return true;
 }
 
 // 更新游戏分类页
 function updateCategoryPage() {
+    // 由于我们现在使用同一个JSON数据源，所以分类页也从同一个数据文件加载
+    // 该函数不再需要单独更新，只需确保games.html引用正确的脚本
     $categoryPagePath = ROOT_PATH . '/games.html';
     
     if (!file_exists($categoryPagePath)) {
         return false;
     }
     
-    // 获取所有游戏
-    $games = getAllGames();
-    
     // 读取分类页内容
     $categoryPageContent = file_get_contents($categoryPagePath);
     
-    // 定位游戏列表区域
-    $gamesListStart = strpos($categoryPageContent, '<!-- 游戏列表区域 -->');
-    if ($gamesListStart === false) {
-        // 尝试其他可能的标记
-        $gamesListStart = strpos($categoryPageContent, '<div class="games-grid">');
-        if ($gamesListStart === false) {
-            return false;
+    // 检查是否已有<script src="js/games-loader.js"></script>
+    if (strpos($categoryPageContent, 'games-loader.js') === false) {
+        // 在JavaScript文件加载部分添加我们的新脚本
+        $scriptInsertPoint = strpos($categoryPageContent, '<!-- JavaScript Files -->');
+        if ($scriptInsertPoint === false) {
+            $scriptInsertPoint = strpos($categoryPageContent, '</body>');
         }
-    }
-    
-    // 查找游戏网格开始和结束位置
-    $gridStart = strpos($categoryPageContent, '<div class="games-grid">', $gamesListStart);
-    if ($gridStart === false) {
-        return false;
-    }
-    
-    // 尝试找到网格结束位置
-    $gridEnd = strpos($categoryPageContent, '</div>', $gridStart + 10);
-    if ($gridEnd === false) {
-        return false;
-    }
-    
-    // 尝试找到下一个主要部分
-    $nextSectionStart = strpos($categoryPageContent, '<div class="pagination">', $gridStart);
-    if ($nextSectionStart === false) {
-        // 如果没有分页，尝试找到下一个主要部分
-        $nextSectionStart = strpos($categoryPageContent, '</section>', $gridEnd);
-        if ($nextSectionStart === false) {
-            // 如果仍然找不到，使用网格结束位置加上一些偏移
-            $nextSectionStart = $gridEnd + 6; // "</div>"的长度
-        }
-    }
-    
-    // 生成游戏卡片HTML
-    $gameCardsHtml = '<div class="games-grid">' . "\n";
-    
-    foreach ($games as $game) {
-        $category = getCategory($game['category']);
-        $categoryName = $category ? $category['name'] : '未分类';
         
-        $gameCardsHtml .= <<<HTML
-                <!-- 游戏卡片 -->
-                <div class="game-card" data-category="{$game['category']}">
-                    <a href="games/{$game['id']}.html">
-                        <div class="game-thumbnail">
-                            <img src="images/games/{$game['thumbnail']}" alt="{$game['title']}">
-                            <div class="game-overlay">
-                                <div class="play-button">
-                                    <i class="fas fa-play"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="game-info">
-                            <h3>{$game['title']}</h3>
-                            <div class="game-meta">
-                                <span class="game-category">{$categoryName}</span>
-                                <span class="game-rating"><i class="fas fa-star"></i> {$game['rating']}</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                
-HTML;
+        if ($scriptInsertPoint !== false) {
+            $scriptTag = "\n<script src=\"js/games-loader.js\"></script>\n";
+            $categoryPageContent = substr_replace($categoryPageContent, $scriptTag, $scriptInsertPoint, 0);
+            file_put_contents($categoryPagePath, $categoryPageContent);
+        }
     }
     
-    $gameCardsHtml .= '</div>';
-    
-    // 替换游戏网格内容
-    $newCategoryPageContent = substr($categoryPageContent, 0, $gridStart);
-    $newCategoryPageContent .= $gameCardsHtml;
-    $newCategoryPageContent .= substr($categoryPageContent, $nextSectionStart);
-    
-    // 保存更新后的分类页
-    file_put_contents($categoryPagePath, $newCategoryPageContent);
+    // 清理旧的游戏卡片区域，使其只包含空的容器
+    $gamesListStart = strpos($categoryPageContent, '<div class="games-grid">');
+    if ($gamesListStart !== false) {
+        $nextSectionStart = strpos($categoryPageContent, '<div class="pagination">', $gamesListStart);
+        if ($nextSectionStart === false) {
+            $nextSectionStart = strpos($categoryPageContent, '</section>', $gamesListStart);
+        }
+        
+        if ($nextSectionStart !== false) {
+            // 替换整个游戏网格内容
+            $newContent = substr($categoryPageContent, 0, $gamesListStart);
+            $newContent .= '<div class="games-grid" id="games-container">' . "\n";
+            $newContent .= '                <!-- Game cards will be loaded from games-data.json via JavaScript -->' . "\n";
+            $newContent .= '                <div class="loading-spinner">' . "\n";
+            $newContent .= '                    <i class="fas fa-spinner fa-spin fa-2x"></i>' . "\n";
+            $newContent .= '                    <p>Loading games...</p>' . "\n";
+            $newContent .= '                </div>' . "\n";
+            $newContent .= '            </div>' . "\n\n";
+            $newContent .= substr($categoryPageContent, $nextSectionStart);
+            
+            file_put_contents($categoryPagePath, $newContent);
+        }
+    }
     
     return true;
 }

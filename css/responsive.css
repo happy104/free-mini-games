@@ -1,6 +1,7 @@
 /* 
 * Free Mini Games - 响应式样式文件
 * 使网站在不同设备上都能良好显示
+* 注意：本网站不支持手机屏幕，仅适配平板电脑和桌面电脑
 */
 
 /* 平板电脑 - 大屏幕 */
@@ -75,8 +76,8 @@
     }
 }
 
-/* 平板电脑 - 小屏幕和手机 - 大屏幕 */
-@media screen and (max-width: 768px) {
+/* 平板电脑 - 最小屏幕 */
+@media screen and (max-width: 768px) and (min-width: 768px) {
     .container {
         max-width: 540px;
     }
@@ -95,26 +96,18 @@
     }
     
     .main-nav {
-        display: none;
+        display: block;
         width: 100%;
         margin-top: 15px;
     }
     
-    .main-nav.active {
-        display: block;
-    }
-    
     .main-nav ul {
-        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .main-nav ul li {
-        margin-left: 0;
-        margin-bottom: 10px;
-    }
-    
-    .menu-toggle {
-        display: block;
+        margin: 0 10px 10px;
     }
     
     .games-grid {
@@ -138,32 +131,18 @@
     }
     
     .related-games-list {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
-    
-    .related-game-item {
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 15px;
-        margin-bottom: 15px;
-    }
-    
-    .related-game-item:last-child {
-        border-bottom: none;
-        padding-bottom: 0;
-    }
-    
+
     .filter-container {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .search-container {
         margin-top: 15px;
         width: 100%;
-    }
-    
-    #game-search {
-        width: 100%;
+        max-width: 300px;
     }
     
     .footer-content {
@@ -182,97 +161,32 @@
     .footer-bottom-links {
         justify-content: center;
     }
-    
-    .comment-item {
-        flex-direction: column;
-    }
-    
-    .comment-avatar {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
 }
 
-/* 手机 - 中小屏幕 */
+/* 
+ * 以下是手机端样式
+ * 已禁用，因为网站不支持手机屏幕
+ */
+
+/*
 @media screen and (max-width: 576px) {
-    .hero {
-        padding: 50px 0;
-    }
-    
-    .hero h2 {
-        font-size: 1.8rem;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-    
-    .games-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .game-card {
-        max-width: 320px;
-        margin: 0 auto;
-    }
-    
-    .filter-buttons {
-        overflow-x: auto;
-        padding-bottom: 10px;
-        white-space: nowrap;
-        display: block;
-        width: 100%;
-    }
-    
-    .filter-btn {
-        display: inline-block;
-        margin-right: 5px;
-        margin-bottom: 5px;
-    }
-    
-    .pagination a {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .game-controls {
-        flex-wrap: wrap;
-    }
-    
-    .control-btn {
-        flex: 1 0 calc(50% - 5px);
-        justify-content: center;
-    }
+    /* 手机样式已禁用 */
 }
 
-/* 手机 - 超小屏幕 */
 @media screen and (max-width: 380px) {
-    .hero h2 {
-        font-size: 1.5rem;
+    /* 超小屏幕手机样式已禁用 */
+}
+*/
+
+/* 额外添加的样式，确保游戏卡片在最小的平板尺寸也能正常显示 */
+@media screen and (max-width: 768px) and (min-width: 768px) {
+    .game-card {
+        width: 100%;
+        margin-bottom: 20px;
     }
     
-    .section-title {
-        font-size: 1.5rem;
-    }
-    
-    .game-header h1 {
-        font-size: 1.5rem;
-    }
-    
-    .game-description h2 {
-        font-size: 1.2rem;
-    }
-    
-    .game-comments h2 {
-        font-size: 1.2rem;
-    }
-    
-    .social-icons {
-        gap: 10px;
-    }
-    
-    .social-icons a {
-        width: 35px;
-        height: 35px;
+    .game-thumbnail img {
+        width: 100%;
+        height: auto;
     }
 } 

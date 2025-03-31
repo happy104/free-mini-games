@@ -1,0 +1,78 @@
+/**
+ * Free Mini Games - 重置样式
+ * 用于确保在所有浏览器中的基本样式一致性
+ */
+
+/* 基本盒模型重置 */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 移除列表样式 */
+ul, ol {
+    list-style: none;
+}
+
+/* 移除锚点下划线 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 表单元素和按钮基本样式 */
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* 图片样式 */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* body 基本样式 */
+body {
+    line-height: 1.5;
+    min-height: 100vh;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+}
+
+/* 容器样式 */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* 辅助类 */
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 主要颜色定义 */
+:root {
+    --primary-color: #0078D7;
+    --secondary-color: #2ecc71;
+    --dark-bg: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --border-color: #404040;
+    --text-color: #f0f0f0;
+    --muted-text: #aaa;
+} 

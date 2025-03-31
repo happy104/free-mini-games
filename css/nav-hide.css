@@ -1,0 +1,25 @@
+/**
+ * Free Mini Games - 导航隐藏样式
+ * 隐藏顶部导航菜单和返回按钮
+ * 2024-04-05
+ */
+
+/* 隐藏顶部导航菜单 */
+.main-nav {
+    display: none !important;
+}
+
+/* 隐藏返回按钮 */
+.back-to-games {
+    display: none !important;
+}
+
+/* 调整顶部标题位置 */
+.site-header .container {
+    justify-content: space-between !important;
+}
+
+/* 确保搜索栏显示正常 */
+.search-bar {
+    margin-left: auto !important;
+} 

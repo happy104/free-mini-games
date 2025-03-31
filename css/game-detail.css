@@ -1,0 +1,364 @@
+/**
+ * Free Mini Games - Game Detail Page Styles
+ * Styles for individual game pages
+ * 2024-04-02
+ */
+
+/* 基本页面布局 */
+body {
+    background-color: #121212;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* 游戏页面布局 */
+.game-page {
+    padding: 20px 0 40px;
+}
+
+.game-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+}
+
+.game-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+    text-align: left;
+    padding-left: 10px;
+}
+
+/* 面包屑导航 */
+.breadcrumbs {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 20px;
+    display: none; /* 隐藏面包屑导航 */
+}
+
+.breadcrumbs a {
+    color: #0078D7;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumbs a:hover {
+    color: #1E90FF;
+    text-decoration: underline;
+}
+
+/* 游戏内容区域 */
+.game-content-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.game-main-column {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+}
+
+/* 游戏容器美化 */
+.game-frame {
+    position: relative;
+    width: 100%;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+}
+
+.game-frame iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+}
+
+/* 游戏加载指示器 */
+.game-frame .loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
+}
+
+.game-frame .loading-indicator i {
+    color: #0078D7;
+    margin-bottom: 10px;
+}
+
+/* 游戏信息样式美化 */
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.control-btn {
+    background-color: #0078D7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.control-btn i {
+    margin-right: 8px;
+}
+
+.control-btn:hover {
+    background-color: #0066b5;
+}
+
+.game-info-box {
+    display: flex;
+    gap: 15px;
+}
+
+.game-info-box span {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.game-info-box i {
+    margin-right: 5px;
+    color: #0078D7;
+}
+
+.game-rating i {
+    color: #FFD700;
+}
+
+/* 游戏描述美化 */
+.game-description {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #ccc;
+}
+
+.game-description p {
+    margin-bottom: 15px;
+    color: #ccc;
+}
+
+.game-description p:last-child {
+    margin-bottom: 0;
+}
+
+.game-description strong {
+    color: #0078D7;
+    font-weight: 600;
+}
+
+/* 相似游戏部分 */
+.similar-games {
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.similar-games h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+/* 侧边栏样式 */
+.game-sidebar {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.sidebar-widget {
+    margin-bottom: 30px;
+}
+
+.sidebar-widget h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #fff;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.sidebar-widget ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-widget li {
+    margin-bottom: 10px;
+}
+
+.sidebar-widget a {
+    display: flex;
+    align-items: center;
+    color: #ddd;
+    text-decoration: none;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+}
+
+.sidebar-widget a:hover {
+    color: #0078D7;
+}
+
+.sidebar-widget img {
+    width: 60px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+/* 广告容器 */
+.ad-container {
+    background-color: #202020;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-bottom-ad {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.sidebar-ad {
+    width: 300px;
+    height: 250px;
+    margin-bottom: 20px;
+}
+
+.tall-ad {
+    height: 600px;
+}
+
+.ad-text {
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .game-content-wrapper {
+        flex-direction: column;
+    }
+
+    .game-sidebar {
+        width: 100%;
+    }
+
+    .game-frame iframe {
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-frame iframe {
+        height: 400px;
+    }
+
+    .game-header h1 {
+        font-size: 26px;
+    }
+
+    .games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+
+    .game-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .game-info-box {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 576px) {
+    .game-frame iframe {
+        height: 300px;
+    }
+
+    .game-controls {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .game-info-box {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-frame iframe {
+        height: 300px;
+    }
+}
+
+/* 游戏内容容器 */
+.game-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 30px;
+} 

@@ -75,13 +75,18 @@ $totalCategories = count($categories);
             </div>
             
             <!-- 快捷操作 -->
-            <div class="dashboard-actions">
-                <a href="add-game.php" class="btn btn-primary">
-                    <i class="fas fa-plus"></i> 添加新游戏
-                </a>
-                <a href="manage-games.php" class="btn btn-secondary">
-                    <i class="fas fa-list"></i> 管理游戏列表
-                </a>
+            <div class="dashboard-widgets">
+                <div class="dashboard-widget">
+                    <h3>快速操作</h3>
+                    <ul class="quick-actions">
+                        <li><a href="add-game.php" class="btn btn-primary"><i class="fas fa-plus"></i> 添加新游戏</a></li>
+                        <li><a href="manage-games.php" class="btn btn-secondary"><i class="fas fa-list"></i> 管理游戏</a></li>
+                        <li><a href="update_categories.php" class="btn btn-info"><i class="fas fa-tags"></i> 同步游戏分类</a></li>
+                        <li><a href="update-all-games.php" class="btn btn-warning"><i class="fas fa-sync"></i> 重新生成所有游戏页面</a></li>
+                        <li><a href="remove-plays-counter.php" class="btn btn-danger"><i class="fas fa-trash-alt"></i> 移除游戏播放量计数器</a></li>
+                        <li><a href="random-games-order.php" class="btn btn-success"><i class="fas fa-random"></i> 随机排序游戏</a></li>
+                    </ul>
+                </div>
             </div>
             
             <!-- 最近添加的游戏 -->

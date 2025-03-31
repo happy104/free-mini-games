@@ -1,0 +1,380 @@
+/**
+ * Free Mini Games - 样式修复文件
+ * 该文件包含修复游戏网站样式问题的CSS规则
+ * 修复日期：2024-03-31
+ */
+
+/* 设置最小宽度限制 */
+body {
+    min-width: 768px; /* 平板电脑的典型宽度 */
+    font-family: Arial, "Microsoft YaHei", sans-serif;
+}
+
+/* 小屏幕设备提示 */
+@media screen and (max-width: 767px) {
+    /* 隐藏所有正常内容 */
+    body > * {
+        display: none !important;
+    }
+    
+    /* 显示提示覆盖层 */
+    body:after {
+        content: "此游戏网站不支持手机屏幕\A请使用平板电脑或电脑访问";
+        white-space: pre;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        z-index: 9999;
+        padding: 20px;
+        font-size: 18px;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+}
+
+/* 游戏卡片基本样式 */
+.game-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #2d2d2d;
+    border: 1px solid #404040;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 0;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 游戏缩略图样式 */
+.game-thumbnail {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.game-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover .game-thumbnail img {
+    transform: scale(1.05);
+}
+
+/* 游戏信息区域样式 */
+.game-info {
+    padding: 15px;
+}
+
+.game-info h3 {
+    margin: 0 0 8px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* 游戏元数据样式 */
+.game-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+/* 修复游戏分类中文显示 */
+.game-category {
+    font-family: "Microsoft YaHei", Arial, sans-serif !important;
+    unicode-bidi: isolate !important;
+    display: inline-block;
+    padding: 3px 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    color: #aaa;
+    font-size: 12px;
+}
+
+/* 游戏评分样式 */
+.game-rating {
+    display: inline-flex;
+    align-items: center;
+    color: #ffb400;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.game-rating i {
+    margin-right: 4px;
+}
+
+/* 玩游戏按钮 */
+.game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.game-card:hover .game-overlay {
+    opacity: 1;
+}
+
+.play-button {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-button i {
+    color: #222;
+    font-size: 20px;
+    margin-left: 3px;
+}
+
+/* 确保游戏网格正确显示 */
+@media screen and (min-width: 768px) {
+    .game-grid, #games-container {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .game-card {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+}
+
+/* 加载指示器样式 */
+#loading-indicator {
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+}
+
+#loading-indicator i {
+    color: #666;
+}
+
+/* 修复分类导航样式 */
+.categories-nav {
+    background-color: #222;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.categories-list li {
+    margin: 5px;
+}
+
+.categories-list button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.categories-list button:hover,
+.categories-list button.active {
+    background-color: #444;
+}
+
+/* 禁用手机端的游戏卡片叠加显示 */
+@media screen and (max-width: 767px) {
+    .game-card {
+        position: absolute;
+        left: -9999px;
+        visibility: hidden;
+    }
+}
+
+/* 隐藏页面底部的错误内容 */
+body > .game-card:not(.games-container .game-card),
+body > .game-title:not(.games-container .game-title) {
+    display: none !important;
+}
+
+/* 增强现有清理功能 */
+body > .game-card,
+body > div > .game-card:not(#games-container .game-card):not(#game-data .game-card),
+body > h2:not(header h2), 
+body > h3:not(header h3), 
+body > .game-meta, 
+body > .game-info,
+body > .mobile-only,
+body > .small-screen-element {
+    display: none !important;
+}
+
+/* 修复滚动加载时的闪烁问题 */
+.games-container {
+    min-height: 200px;
+    position: relative;
+}
+
+/* 修复图片容器高度问题 */
+.game-card .image-container {
+    position: relative;
+    padding-top: 75%; /* 4:3 比例 */
+    overflow: hidden;
+}
+
+.game-card .image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover .image-container img {
+    transform: scale(1.05);
+}
+
+/* 修复在图片加载过程中的空白问题 */
+.game-card .image-container.loading {
+    background-color: #222;
+}
+
+/* 修复无限滚动加载触发元素 */
+.load-more-sentinel {
+    height: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* 隐藏文档中可能出现的多余元素 */
+#duplicate-elements,
+.duplicate-content,
+.error-content {
+    display: none !important;
+}
+
+/**
+ * 全站修复样式
+ * 用于修复乱码、评分标签和页面底部错误内容
+ */
+
+/* 确保分类导航栏可见 */
+.categories-nav,
+.categories-wrapper,
+.categories-list,
+.category-filter,
+ul[class*="categor"],
+[class*="category-"] {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* 确保分类按钮可见 */
+.category-filter button,
+[class*="categor"] button,
+[class*="categor"] li {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* 隐藏直接加到body下的游戏卡片(通常是错误的) */
+body > .game-card {
+    display: none !important;
+}
+
+/* 修复游戏卡片样式 */
+#games-container .game-card {
+    display: block !important;
+}
+
+/* 隐藏已知的错误标签 */
+span:empty,
+span:contains("将"),
+[class*="将"] {
+    display: none !important;
+}
+
+/* 隐藏包含HTML标签的span */
+span:contains("<span"), 
+span:contains("</span>"), 
+span:contains("&lt;span"), 
+span:contains("&lt;/span&gt;"),
+span:contains("墙倒"),
+span:contains("墙值") {
+    display: none !important;
+}
+
+/* 确保游戏卡片分类区域有合适的样式 */
+.game-meta {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 5px !important;
+    margin-top: 5px !important;
+}
+
+/* 修复分类标签的基本样式 */
+.game-card .game-category {
+    display: inline-block !important;
+    padding: 3px 8px !important;
+    background-color: rgba(0, 120, 215, 0.1) !important;
+    color: #0078D7 !important;
+    border-radius: 4px !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    margin: 0 !important;
+}
+
+/* 统一评分标签样式 */
+.game-card .game-rating {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 3px 8px !important;
+    background-color: rgba(255, 215, 0, 0.2) !important;
+    color: #FF8C00 !important;
+    border-radius: 4px !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+    margin: 0 5px !important;
+} 

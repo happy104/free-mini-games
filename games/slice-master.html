@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slice Master - Free Mini Games</title>
+    <meta name="description" content="Play Slice Master online for free at Free Mini Games. Slice Master is a casual one-person game whose goal is to slice everything in sight, well, almost everything. This one-button game is driven by precision, timing, and discernment to rack up a high score. Flying knives are generally a no-no, but in this game, they are the only way to progress to new blades and skins.
+
+How to Play Slice Master
+Slice Master is a one-button game controlled by the space pad on your keyboard or the left click on your mouse. All the control lies in this one simple movement. The game has an ASMR quality, and the consistent slicing is oddly soothing in sound.
+
+The aim is simple: slice everything in sight: fruit, shapes, walls, furniture, and more. You can slice most things, but don’t add the white wall to your target list—it’s just a holding material for your knife.
+
+You will get to shop along the way, using the coins accumulated to purchase objects like sharper blades, swords, mace, and more.
+
+Tips
+Stay away from the pink spiked metal shapes. They are too strong for your knife and will take you straight back to the beginning of the round.
+Hit the correct numeric target at the end of each level to multiply your points by the target number and boost your score.
+Release Date
+April 2024
+
+Platform
+
+Web browser (desktop and mobile)
+
+More Games Like This
+If casual games are your style, you can find a slew of them in our casual game category. Go for a classic like Bubble Shooter Classic or a head-scratching word teaser like Text Twist, and if you really want to be adventurous, try to outwit Google in Google Feud or other players in Free GeoGuessr. Light play and a hard challenge make for the perfect afternoon break.
+
+Last Updated
+Jul 31, 2024
+
+Controls
+Use the left mouse button or space to flip your knife into action.
+
+FAQ
+How can I earn more points in Slice Masters?
+When you reach the end of the level, make sure you hit the numbered targets to multiply your points. The higher the number, the more points you will receive, so aim high.
+
+Can I cut the white pillar in Slice Masters?
+No, the white pillar can’t be cut, but you can attach it and use it as a safety net to prevent it from hitting the ground.
+
+Can I go backwards in Slice Masters?
+No, you can only go forward in Slice Masters.
+
+How many knives can I unlock in Slice Masters?
+You can unlock 9 knives in Slice Masters so keep those points coming.">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <style>
+        /* 防止内容闪烁 */
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body.css-loaded {
+            opacity: 1;
+        }
+        
+        /* 游戏加载动画 */
+        .loading-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        /* 确保游戏iframe始终在上层 */
+        .game-frame iframe {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+    <!-- 基础样式文件 -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/dark-theme.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/fixes.css">
+    
+    <!-- 头部和导航样式 -->
+    <link rel="stylesheet" href="../css/header-style.css">
+    <link rel="stylesheet" href="../css/nav-style.css">
+    <link rel="stylesheet" href="../css/search-fix.css">
+    <link rel="stylesheet" href="../css/title-fix.css">
+    
+    <!-- 游戏详情页样式 -->
+    <link rel="stylesheet" href="../css/style-overrides.css">
+    <link rel="stylesheet" href="../css/game-cards.css">
+    <link rel="stylesheet" href="../css/category-fix.css">
+    <link rel="stylesheet" href="../css/game-detail.css">
+    <link rel="stylesheet" href="../css/loading-fix.css">
+    <link rel="stylesheet" href="../css/game-detail-nav.css">
+    <link rel="stylesheet" href="../css/nav-hide.css">
+    <link rel="stylesheet" href="../css/header-fix.css">
+    
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google AdSense代码 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2406571508028686" crossorigin="anonymous"></script>
+</head>
+<body class="game-detail-page">
+    <!-- 头部导航 -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <h1>Free Mini Games</h1>
+                </a>
+            </div>
+            <div class="search-bar">
+                <form action="../search.html" method="get">
+                    <input type="text" name="q" placeholder="Search games...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 游戏分类导航 -->
+    <section class="categories-nav">
+        <div class="container">
+            <ul class="categories-list category-filter">
+                <li><button onclick="window.location.href='../index.html'" class="category-btn"><i class="fas fa-home"></i> All Games</button></li>
+                <!-- 注意：将游戏所属的分类按钮标记为active -->
+                <li><button onclick="window.location.href='../index.html?category=action'" class="category-btn">Action</button></li>
+                <li><button onclick="window.location.href='../index.html?category=puzzle'" class="category-btn">Puzzle</button></li>
+                <li><button onclick="window.location.href='../index.html?category=racing'" class="category-btn">Racing</button></li>
+                <li><button onclick="window.location.href='../index.html?category=sports'" class="category-btn">Sports</button></li>
+                <li><button onclick="window.location.href='../index.html?category=strategy'" class="category-btn">Strategy</button></li>
+                <li><button onclick="window.location.href='../index.html?category=horror'" class="category-btn">Horror</button></li>
+                <li><button onclick="window.location.href='../index.html?category=adventure'" class="category-btn">Adventure</button></li>
+                <li><button onclick="window.location.href='../index.html?category=casual'" class="category-btn">Casual</button></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 游戏内容区域 -->
+    <section class="game-page">
+        <div class="container">
+            <!-- 游戏标题和面包屑 -->
+            <div class="game-header">
+                <h1>Slice Master</h1>
+                <div class="breadcrumbs">
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html">Games</a>
+                    <a href="../index.html?category=Casual Games">Casual Games</a>
+                    <span>Slice Master</span>
+                </div>
+            </div>
+
+            <!-- 游戏内容 -->
+            <div class="game-content-wrapper">
+                <!-- 游戏主要内容区 -->
+                <div class="game-main-column">
+                    <!-- 游戏框架 -->
+                    <div class="game-frame">
+                        <iframe 
+                            src="https://www.crazygames.com/embed/slice-master" 
+                            frameborder="0" 
+                            allow="gamepad *; autoplay; fullscreen" 
+                            allowfullscreen
+                            sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            importance="high"
+                            title="Slice Master Online Game"></iframe>
+                        <div class="loading-indicator">
+                            <i class="fas fa-spinner fa-spin fa-3x"></i>
+                            <p>Loading game...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏控制区 -->
+                    <div class="game-controls">
+                        <button class="control-btn fullscreen-btn" id="fullscreen-btn">
+                            <i class="fas fa-expand"></i> Fullscreen
+                        </button>
+                        <div class="game-info-box">
+                            <span class="game-category"><i class="fas fa-tag"></i> Casual Games</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.6</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏描述 -->
+                    <div class="game-description">
+                        <p>Slice Master is a casual one-person game whose goal is to slice everything in sight, well, almost everything. This one-button game is driven by precision, timing, and discernment to rack up a high score. Flying knives are generally a no-no, but in this game, they are the only way to progress to new blades and skins.
+
+How to Play Slice Master
+Slice Master is a one-button game controlled by the space pad on your keyboard or the left click on your mouse. All the control lies in this one simple movement. The game has an ASMR quality, and the consistent slicing is oddly soothing in sound.
+
+The aim is simple: slice everything in sight: fruit, shapes, walls, furniture, and more. You can slice most things, but don’t add the white wall to your target list—it’s just a holding material for your knife.
+
+You will get to shop along the way, using the coins accumulated to purchase objects like sharper blades, swords, mace, and more.
+
+Tips
+Stay away from the pink spiked metal shapes. They are too strong for your knife and will take you straight back to the beginning of the round.
+Hit the correct numeric target at the end of each level to multiply your points by the target number and boost your score.
+Release Date
+April 2024
+
+Platform
+
+Web browser (desktop and mobile)
+
+More Games Like This
+If casual games are your style, you can find a slew of them in our casual game category. Go for a classic like Bubble Shooter Classic or a head-scratching word teaser like Text Twist, and if you really want to be adventurous, try to outwit Google in Google Feud or other players in Free GeoGuessr. Light play and a hard challenge make for the perfect afternoon break.
+
+Last Updated
+Jul 31, 2024
+
+Controls
+Use the left mouse button or space to flip your knife into action.
+
+FAQ
+How can I earn more points in Slice Masters?
+When you reach the end of the level, make sure you hit the numbered targets to multiply your points. The higher the number, the more points you will receive, so aim high.
+
+Can I cut the white pillar in Slice Masters?
+No, the white pillar can’t be cut, but you can attach it and use it as a safety net to prevent it from hitting the ground.
+
+Can I go backwards in Slice Masters?
+No, you can only go forward in Slice Masters.
+
+How many knives can I unlock in Slice Masters?
+You can unlock 9 knives in Slice Masters so keep those points coming.</p>
+                        
+                        <p>操作方法: 根据游戏类型而定，通常使用鼠标点击或键盘方向键控制。</p>
+                        
+                        <p>特点:
+                        <br>- 免费在线游戏，无需下载
+                        <br>- 支持全屏模式
+                        <br>- 流畅的游戏体验
+                        <br>- 适合所有年龄段的玩家</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript文件 -->
+    <script src="../js/main.js"></script>
+    <script src="../js/games.js"></script>
+    <script src="../js/game-nav.js"></script>
+    <script src="../js/sidebar-games.js"></script>
+</body>
+</html>

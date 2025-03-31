@@ -19,7 +19,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: #4a69bd;
-    background-image: linear-gradient(135deg, #4a69bd 0%, #6a89cc 100%);
+    background-image: linear-gradient(135deg, #3a59ad 0%, #5a79bc 100%);
 }
 
 .login-container {
@@ -205,11 +205,11 @@ body {
 /* 按钮样式 */
 .btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 24px;
     background: #e9ecef;
     color: #495057;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     text-decoration: none;
     font-size: 1rem;
@@ -284,9 +284,9 @@ body {
 
 .stat-card {
     background: white;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
 }
@@ -351,9 +351,15 @@ body {
 .game-preview {
     margin-top: 20px;
     background: white;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.game-preview:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
 }
 
 .game-preview h3 {
@@ -368,6 +374,7 @@ body {
     overflow: hidden;
     border-radius: 4px;
     margin-bottom: 15px;
+    border: 1px solid #e9ecef;
 }
 
 .preview-container iframe {
