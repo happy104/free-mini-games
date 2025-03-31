@@ -1,39 +1,30 @@
-# 允许跨域资源共享(CORS)
-<IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
-</IfModule>
-
-# 设置JSON文件的MIME类型
+# 确保JSON文件的MIME类型正确设置
 <IfModule mod_mime.c>
     AddType application/json .json
 </IfModule>
 
-# 禁止目录浏览
-Options -Indexes
-
-# 启用GZIP压缩
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+# 启用CORS以允许跨域请求
+<IfModule mod_headers.c>
+    <FilesMatch "\.(json)$">
+        Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Methods "GET"
+        Header set Access-Control-Allow-Headers "Content-Type"
+    </FilesMatch>
 </IfModule>
 
-# 设置缓存控制
+# 禁用JSON文件缓存
 <IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresByType image/jpg "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
-    ExpiresByType image/gif "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    # 游戏数据文件不缓存
-    ExpiresByType application/json "access plus 0 seconds"
+    <FilesMatch "\.(json)$">
+        ExpiresActive On
+        ExpiresDefault "access plus 0 seconds"
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+    </FilesMatch>
 </IfModule>
 
-# 错误页面重定向
-ErrorDocument 404 /index.html
-
-# 禁止访问敏感文件
-<FilesMatch "^\.">
-    Order allow,deny
-    Deny from all
-</FilesMatch> 
+# 如果使用Cloudflare Pages，添加重定向规则
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # 将请求到.php文件重定向到相应的.json文件
+    RewriteRule ^js/get-games-data\.php$ js/games-data.json [L]
+</IfModule> 

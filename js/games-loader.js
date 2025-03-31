@@ -75,7 +75,7 @@
         const timestamp = new Date().getTime();
         const randomParam = Math.floor(Math.random() * 1000000);
         
-        // 直接从JSON文件加载游戏数据
+        // 直接从JSON文件加载游戏数据，而不是使用PHP脚本
         fetch(`js/games-data.json?v=${timestamp}&r=${randomParam}`)
             .then(response => {
                 if (!response.ok) {
@@ -105,89 +105,19 @@
             .catch(error => {
                 logger.error('Error loading game data: ' + error.message);
                 
-                // 尝试备用方法 - 使用本地虚拟游戏数据
-                logger.info('Attempting to use fallback game data');
-                
-                try {
-                    // 创建最小的备用游戏数据集
-                    const fallbackGames = [
-                        {
-                            id: "room-escape-strange-case",
-                            title: "Room Escape: Strange Case",
-                            category: "horror",
-                            categoryName: "Horror Games",
-                            rating: "4.8",
-                            thumbnail: "1743316826103.jpg"
-                        },
-                        {
-                            id: "qb-legend",
-                            title: "QB Legend",
-                            category: "sports",
-                            categoryName: "Sports Games",
-                            rating: "4.6",
-                            thumbnail: "1743430810677.jpg"
-                        },
-                        {
-                            id: "playground-man-ragdoll-show",
-                            title: "Playground Man! Ragdoll Show!",
-                            category: "casual",
-                            categoryName: "Casual Games",
-                            rating: "4.4",
-                            thumbnail: "1743432549064.jpg"
-                        },
-                        {
-                            id: "exhibit-of-sorrows",
-                            title: "Exhibit of Sorrows",
-                            category: "horror",
-                            categoryName: "Horror Games",
-                            rating: "5",
-                            thumbnail: "1743317420879.jpg"
-                        }
-                    ];
-                    
-                    // 使用备用数据
-                    gameData = fallbackGames;
-                    
-                    // 移除加载动画
-                    const loadingSpinner = document.querySelector('.loading-spinner');
-                    if (loadingSpinner) {
-                        loadingSpinner.style.display = 'none';
-                    }
-                    
-                    // 加载游戏卡片
-                    loadGames();
-                    
-                    // 显示恢复提示
-                    const gamesContainer = document.getElementById('games-container');
-                    if (gamesContainer) {
-                        const recoveryNote = document.createElement('div');
-                        recoveryNote.className = 'recovery-note';
-                        recoveryNote.innerHTML = `
-                            <div style="background:#f1c40f;color:#000;padding:10px;margin:10px 0;border-radius:4px;text-align:center;">
-                                <p>使用备用游戏数据 - 部分游戏可能无法显示</p>
-                                <button onclick="location.reload()" style="margin-top:5px;padding:5px 10px;background:#3498db;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-                                    重试加载完整数据
-                                </button>
-                            </div>
-                        `;
-                        gamesContainer.prepend(recoveryNote);
-                    }
-                    
-                } catch (fallbackError) {
-                    // 如果备用方法也失败，显示错误消息
-                    const gamesContainer = document.getElementById('games-container');
-                    if (gamesContainer) {
-                        gamesContainer.innerHTML = `
-                            <div class="error-message" style="text-align:center;padding:30px;">
-                                <i class="fas fa-exclamation-triangle" style="font-size:48px;color:#e74c3c;"></i>
-                                <p style="margin-top:15px;">加载游戏数据出错</p>
-                                <p style="margin-top:5px;font-size:14px;color:#777;">${error.message}</p>
-                                <button onclick="location.reload()" style="margin-top:15px;padding:8px 15px;background:#3498db;color:#fff;border:none;border-radius:4px;cursor:pointer;">
-                                    重试
-                                </button>
-                            </div>
-                        `;
-                    }
+                // Display error message
+                const gamesContainer = document.getElementById('games-container');
+                if (gamesContainer) {
+                    gamesContainer.innerHTML = `
+                        <div class="error-message" style="text-align:center;padding:30px;">
+                            <i class="fas fa-exclamation-triangle" style="font-size:48px;color:#e74c3c;"></i>
+                            <p style="margin-top:15px;">Error loading game data</p>
+                            <p style="margin-top:5px;font-size:14px;color:#777;">${error.message}</p>
+                            <button onclick="location.reload()" style="margin-top:15px;padding:8px 15px;background:#3498db;color:#fff;border:none;border-radius:4px;cursor:pointer;">
+                                Retry
+                            </button>
+                        </div>
+                    `;
                 }
             });
     }

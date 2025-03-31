@@ -1,0 +1,6 @@
+# 将PHP请求重定向到相应的JSON文件
+/js/get-games-data.php /js/games-data.json 200
+
+# 处理可能的404错误，重定向到首页
+/admin/* /index.html 404
+/*.php /index.html 404 

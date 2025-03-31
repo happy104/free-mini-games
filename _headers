@@ -1,0 +1,14 @@
+# 全局头部设置
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# 为JSON文件设置CORS和缓存头
+/js/*.json
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET
+  Access-Control-Allow-Headers: Content-Type
+  Content-Type: application/json
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache 
