@@ -1,0 +1,145 @@
+/**
+ * Free Mini Games - 头部样式修复文件
+ * 用于修复网站标题和搜索框的样式问题
+ * 2024-03-31
+ */
+
+/* 网站头部容器样式 */
+.site-header {
+    background-color: #1a1a1a;
+    padding: 12px 0;
+    box-shadow: none;
+    position: relative;
+    z-index: 100;
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 网站标题样式 */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo h1 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.5px;
+    text-transform: none;
+}
+
+/* 主要导航样式 */
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav li {
+    margin-right: 20px;
+}
+
+.main-nav a {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+}
+
+.main-nav a:hover {
+    color: #fff;
+}
+
+/* 搜索框样式 */
+.search-bar {
+    position: relative;
+    width: 220px;
+}
+
+.search-bar form {
+    display: flex;
+    width: 100%;
+}
+
+.search-bar input[type="text"] {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 4px 0 0 4px;
+    background-color: #333;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+.search-bar input[type="text"]::placeholder {
+    color: #999;
+}
+
+.search-bar button {
+    background-color: #0078D7;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    width: 36px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* 移动端菜单按钮 */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: #fff;
+}
+
+/* 响应式样式 */
+@media (max-width: 768px) {
+    .search-bar {
+        width: 200px;
+    }
+    
+    .logo h1 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .site-header .container {
+        flex-wrap: wrap;
+    }
+    
+    .logo {
+        order: 1;
+        flex: 1;
+    }
+    
+    .menu-toggle {
+        display: block;
+        order: 3;
+    }
+    
+    .search-bar {
+        order: 2;
+        width: 100%;
+        margin-top: 15px;
+    }
+} 

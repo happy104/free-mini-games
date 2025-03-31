@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldGuessr Free GeoGuessr - Free Mini Games</title>
+    <meta name="description" content="Play WorldGuessr Free GeoGuessr online for free at Free Mini Games. Worldguessr is a casual quiz game, a free alternative to Geoguessr, perfect for testing and expanding your geography skills through immersive Street View exploration. Each round, you will find yourself dropped into random locations around the globe, with only environmental clues to guide you in pinpointing your exact whereabouts. From cityscapes to rural roads, your surroundings become the puzzle pieces you need to analyze, turning each game into a thrilling geographical investigation.
+
+How to Play Worldguessr
+In Worldguessr, each game starts by placing you somewhere on Google Maps, and if you can’t immediately guess where you are, which is likely the majority of the time as you often start on obscure, long, and winding roads, you can move around to gather valuable clues. Search for nearby landmarks, coastlines, street signs, architectural styles, and other geographical features that might give away your location. Anything with a bit of language, like signs or billboards, can be especially useful, helping you narrow down your guess to a specific country or region.
+
+Worldguessr exploration goes beyond simple gameplay, offering an engaging way to enrich your geographic knowledge. Choose from hundreds of community-created maps tailored to different regions and themes, allowing you to travel from bustling metropolises to remote wildernesses. With unlimited rounds and a variety of challenges, you can play at your own pace or jump into multiplayer modes, where you’ll compete with friends or players worldwide.
+
+For those moments when you feel completely stumped, Worldguessr offers a helpful hint feature. This hint won’t give away your exact location, but it will nudge you in the right direction by identifying the general part of the world—such as the continent—where you are. From there, the challenge is yours to explore, observe, and deduce the country, city, and even the town where you’ve been dropped, relying on your own skills to make the final call.
+
+Once you make your guess, Worldguessr reveals just how close—or far—you were from the actual location, helping you refine your skills over time. This unique blend of learning and adventure makes Worldguessr perfect for geography enthusiasts, travelers at heart, or anyone who loves a good challenge.
+
+More Games Like This
+If you like this game, you will want to browse our casual games for even more of the same. Popular titles include Google Feud, a quiz game where you guess a portion of Google queries; Tile Guru, a tile-matching game designed to train your brain and promote relaxation; and Flappy Bird, a side-scrolling game in which you click to avoid obstacles.
+
+Controls
+Use the mouse to play the game.
+
+FAQ
+Can I play Worldguessr for free?
+Worldguessr is free to play at CrazyGames.
+
+How do you find where you are in Worldguessr?
+The key to finding where you are in Worldguessr is exploring where you are and looking for cultural clues.">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <style>
+        /* 防止内容闪烁 */
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body.css-loaded {
+            opacity: 1;
+        }
+        
+        /* 游戏加载动画 */
+        .loading-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        /* 确保游戏iframe始终在上层 */
+        .game-frame iframe {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+    <!-- 基础样式文件 -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/dark-theme.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/fixes.css">
+    
+    <!-- 头部和导航样式 -->
+    <link rel="stylesheet" href="../css/header-style.css">
+    <link rel="stylesheet" href="../css/nav-style.css">
+    <link rel="stylesheet" href="../css/search-fix.css">
+    <link rel="stylesheet" href="../css/title-fix.css">
+    
+    <!-- 游戏详情页样式 -->
+    <link rel="stylesheet" href="../css/style-overrides.css">
+    <link rel="stylesheet" href="../css/game-cards.css">
+    <link rel="stylesheet" href="../css/category-fix.css">
+    <link rel="stylesheet" href="../css/game-detail.css">
+    <link rel="stylesheet" href="../css/loading-fix.css">
+    <link rel="stylesheet" href="../css/game-detail-nav.css">
+    <link rel="stylesheet" href="../css/nav-hide.css">
+    <link rel="stylesheet" href="../css/header-fix.css">
+    
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google AdSense代码 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2406571508028686" crossorigin="anonymous"></script>
+</head>
+<body class="game-detail-page">
+    <!-- 头部导航 -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <h1>Free Mini Games</h1>
+                </a>
+            </div>
+            <div class="search-bar">
+                <form action="../search.html" method="get">
+                    <input type="text" name="q" placeholder="Search games...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 游戏分类导航 -->
+    <section class="categories-nav">
+        <div class="container">
+            <ul class="categories-list category-filter">
+                <li><button onclick="window.location.href='../index.html'" class="category-btn"><i class="fas fa-home"></i> All Games</button></li>
+                <!-- 注意：将游戏所属的分类按钮标记为active -->
+                <li><button onclick="window.location.href='../index.html?category=action'" class="category-btn">Action</button></li>
+                <li><button onclick="window.location.href='../index.html?category=puzzle'" class="category-btn">Puzzle</button></li>
+                <li><button onclick="window.location.href='../index.html?category=racing'" class="category-btn">Racing</button></li>
+                <li><button onclick="window.location.href='../index.html?category=sports'" class="category-btn">Sports</button></li>
+                <li><button onclick="window.location.href='../index.html?category=strategy'" class="category-btn">Strategy</button></li>
+                <li><button onclick="window.location.href='../index.html?category=horror'" class="category-btn">Horror</button></li>
+                <li><button onclick="window.location.href='../index.html?category=adventure'" class="category-btn">Adventure</button></li>
+                <li><button onclick="window.location.href='../index.html?category=casual'" class="category-btn">Casual</button></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 游戏内容区域 -->
+    <section class="game-page">
+        <div class="container">
+            <!-- 游戏标题和面包屑 -->
+            <div class="game-header">
+                <h1>WorldGuessr Free GeoGuessr</h1>
+                <div class="breadcrumbs">
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html">Games</a>
+                    <a href="../index.html?category=Casual Games">Casual Games</a>
+                    <span>WorldGuessr Free GeoGuessr</span>
+                </div>
+            </div>
+
+            <!-- 游戏内容 -->
+            <div class="game-content-wrapper">
+                <!-- 游戏主要内容区 -->
+                <div class="game-main-column">
+                    <!-- 游戏框架 -->
+                    <div class="game-frame">
+                        <iframe 
+                            src="https://www.crazygames.com/embed/worldguessr" 
+                            frameborder="0" 
+                            allow="gamepad *; autoplay; fullscreen" 
+                            allowfullscreen
+                            sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            importance="high"
+                            title="WorldGuessr Free GeoGuessr Online Game"></iframe>
+                        <div class="loading-indicator">
+                            <i class="fas fa-spinner fa-spin fa-3x"></i>
+                            <p>Loading game...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏控制区 -->
+                    <div class="game-controls">
+                        <button class="control-btn fullscreen-btn" id="fullscreen-btn">
+                            <i class="fas fa-expand"></i> Fullscreen
+                        </button>
+                        <div class="game-info-box">
+                            <span class="game-category"><i class="fas fa-tag"></i> Casual Games</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.6</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏描述 -->
+                    <div class="game-description">
+                        <p>Worldguessr is a casual quiz game, a free alternative to Geoguessr, perfect for testing and expanding your geography skills through immersive Street View exploration. Each round, you will find yourself dropped into random locations around the globe, with only environmental clues to guide you in pinpointing your exact whereabouts. From cityscapes to rural roads, your surroundings become the puzzle pieces you need to analyze, turning each game into a thrilling geographical investigation.
+
+How to Play Worldguessr
+In Worldguessr, each game starts by placing you somewhere on Google Maps, and if you can’t immediately guess where you are, which is likely the majority of the time as you often start on obscure, long, and winding roads, you can move around to gather valuable clues. Search for nearby landmarks, coastlines, street signs, architectural styles, and other geographical features that might give away your location. Anything with a bit of language, like signs or billboards, can be especially useful, helping you narrow down your guess to a specific country or region.
+
+Worldguessr exploration goes beyond simple gameplay, offering an engaging way to enrich your geographic knowledge. Choose from hundreds of community-created maps tailored to different regions and themes, allowing you to travel from bustling metropolises to remote wildernesses. With unlimited rounds and a variety of challenges, you can play at your own pace or jump into multiplayer modes, where you’ll compete with friends or players worldwide.
+
+For those moments when you feel completely stumped, Worldguessr offers a helpful hint feature. This hint won’t give away your exact location, but it will nudge you in the right direction by identifying the general part of the world—such as the continent—where you are. From there, the challenge is yours to explore, observe, and deduce the country, city, and even the town where you’ve been dropped, relying on your own skills to make the final call.
+
+Once you make your guess, Worldguessr reveals just how close—or far—you were from the actual location, helping you refine your skills over time. This unique blend of learning and adventure makes Worldguessr perfect for geography enthusiasts, travelers at heart, or anyone who loves a good challenge.
+
+More Games Like This
+If you like this game, you will want to browse our casual games for even more of the same. Popular titles include Google Feud, a quiz game where you guess a portion of Google queries; Tile Guru, a tile-matching game designed to train your brain and promote relaxation; and Flappy Bird, a side-scrolling game in which you click to avoid obstacles.
+
+Controls
+Use the mouse to play the game.
+
+FAQ
+Can I play Worldguessr for free?
+Worldguessr is free to play at CrazyGames.
+
+How do you find where you are in Worldguessr?
+The key to finding where you are in Worldguessr is exploring where you are and looking for cultural clues.</p>
+                        
+                        <p>操作方法: 根据游戏类型而定，通常使用鼠标点击或键盘方向键控制。</p>
+                        
+                        <p>特点:
+                        <br>- 免费在线游戏，无需下载
+                        <br>- 支持全屏模式
+                        <br>- 流畅的游戏体验
+                        <br>- 适合所有年龄段的玩家</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript文件 -->
+    <script src="../js/main.js"></script>
+    <script src="../js/games.js"></script>
+    <script src="../js/game-nav.js"></script>
+    <script src="../js/sidebar-games.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+/**
+ * Free Mini Games - Dark Theme
+ * 暗色主题样式
+ * 2024-04-02
+ */
+
+/* 为所有页面应用暗色主题 */
+body,
+body.dark-mode,
+.index-page,
+.category-page,
+.search-page,
+.game-detail-page,
+.game-page {
+    background-color: #121212;
+    color: #fff;
+}
+
+/* 暗色主题标题 */
+h1, h2, h3, h4, h5, h6,
+.index-page h1,
+.index-page h2,
+.index-page h3,
+.category-page h1,
+.category-page h2,
+.category-page h3,
+.search-page h1,
+.search-page h2,
+.search-page h3,
+.game-page h1,
+.game-page h2,
+.game-page h3 {
+    color: #fff;
+}
+
+/* 暗色主题链接 */
+a,
+.dark-mode a {
+    color: #1E90FF;
+}
+
+/* 暗色主题表单元素 */
+input,
+textarea,
+select,
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+/* 暗色主题按钮 */
+button,
+.btn,
+.dark-mode button,
+.dark-mode .btn {
+    background-color: #0078D7;
+    color: #fff;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px;
+    padding: 24px 0;
+}
+
+.game-card {
+    background: #2d2d2d;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid #404040;
+}
+
+.game-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.2);
+}
+
+.game-thumbnail {
+    position: relative;
+    overflow: hidden;
+}
+
+.game-thumbnail img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.game-card:hover .game-thumbnail img {
+    opacity: 0.9;
+}
+
+.game-info {
+    padding: 16px;
+    background-color: #1e1e1e;
+}
+
+.game-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+}
+
+.game-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #aaa;
+    font-size: 14px;
+}

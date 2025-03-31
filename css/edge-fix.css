@@ -1,0 +1,81 @@
+/**
+ * Free Mini Games - Edge Alignment Fix
+ * Ensures navigation edges align perfectly with content
+ * 2024-04-02
+ */
+
+/* 移除所有边距和填充 */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* 修复导航区域的定位问题 */
+.categories-nav {
+    background-color: #1e1e1e;
+    width: 100%;
+    margin: 0;
+    padding: 12px 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* 统一所有容器的尺寸和边距 */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* 确保分类按钮列表完全填充容器宽度 */
+.categories-list {
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+/* 修复左侧按钮的边距 */
+.categories-list li:first-child {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+/* 修复左侧边框区域 */
+.categories-nav:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-color: transparent;
+}
+
+/* 修复右侧边框区域 */
+.categories-nav:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    background-color: transparent;
+}
+
+/* 强制重置按钮样式 */
+.categories-list button {
+    border: none;
+    background-color: #2a2a2a;
+    padding: 10px 18px;
+}
+
+/* 移动设备上的调整 */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+} 

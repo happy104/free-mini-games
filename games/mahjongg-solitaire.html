@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahjongg Solitaire - Free Mini Games</title>
+    <meta name="description" content="Play Mahjongg Solitaire online for free at Free Mini Games. Mahjongg Solitaire is an online mahjong puzzle board game featuring traditional rules and modern visuals. There are no shuffles, and the game is timed, but the game's pace is relaxed.
+
+How to Play Mahjongg Solitaire
+Spot the patterns
+
+Mahjong is a tricky puzzle game. There are so many tiles, many of which look the same but feature slight differences. Along with the need to spot these patterns, you can’t move any pieces with both sides blocked. The left or right side needs to be accessible, at least.
+
+Use hints when you’re stuck
+
+Mahjongg Solitaire features hints if you get stuck, but unlike some other mahjong games, it does not have a shuffle feature. The games are also timed, meaning there is some urgency to how many tiles you can match.
+
+When the game ends, you’ll get a score for the tiles you matched and a bonus for how far you got in the game before your time ran out.
+
+Tile groups in Mahjongg Solitaire
+Mahjongg Solitaire features 144 tiles divided primarily into three suits. The primary suits are:
+
+Dots - feature circles
+Bamboo - feature lines
+Characters - feature Chinese characters
+In Mahjongg Solitaire, you’ll also notice special tiles that can be matched even without the same image. These are highlighted in blue or green.
+
+More Games Like This
+Mahjong Solitaire is an excellent choice for a beginner or regular Mahjong enthusiast. However, there are many other titles in our collection of Mahjong games such as Mahjong. Other puzzle games you may like include board games such as Yahtzee Online, Rummikub, and Ludo.
+
+Release Date
+October 2016
+
+Platform
+Web browser (desktop and mobile). We also have the Android version.
+
+Last Updated
+Aug 03, 2022
+
+Controls
+Use the left mouse button to interact.
+
+FAQ
+Is it spelled mahjong or mahjongg?
+Both words are correct and are used to describe the same game.
+Is Mahjongg Solitaire a difficult game?
+Mahjong is generally a tricky game, but this is probably a medium-difficulty mahjong game compared with others. There are no shuffles, but you have 10 minutes and unlimited hints which balances the game nicely.
+Is Mahjong Solitaire a free game?
+Yes, you can play Mahjong Solitaire online for free at CrazyGames.
+
+Is Mahjong good for the brain?
+Puzzle games are often cited as keeping the mind sharp and maintaining brain health.">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <style>
+        /* 防止内容闪烁 */
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body.css-loaded {
+            opacity: 1;
+        }
+        
+        /* 游戏加载动画 */
+        .loading-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        /* 确保游戏iframe始终在上层 */
+        .game-frame iframe {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+    <!-- 基础样式文件 -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/dark-theme.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/fixes.css">
+    
+    <!-- 头部和导航样式 -->
+    <link rel="stylesheet" href="../css/header-style.css">
+    <link rel="stylesheet" href="../css/nav-style.css">
+    <link rel="stylesheet" href="../css/search-fix.css">
+    <link rel="stylesheet" href="../css/title-fix.css">
+    
+    <!-- 游戏详情页样式 -->
+    <link rel="stylesheet" href="../css/style-overrides.css">
+    <link rel="stylesheet" href="../css/game-cards.css">
+    <link rel="stylesheet" href="../css/category-fix.css">
+    <link rel="stylesheet" href="../css/game-detail.css">
+    <link rel="stylesheet" href="../css/loading-fix.css">
+    <link rel="stylesheet" href="../css/game-detail-nav.css">
+    <link rel="stylesheet" href="../css/nav-hide.css">
+    <link rel="stylesheet" href="../css/header-fix.css">
+    
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google AdSense代码 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2406571508028686" crossorigin="anonymous"></script>
+</head>
+<body class="game-detail-page">
+    <!-- 头部导航 -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <h1>Free Mini Games</h1>
+                </a>
+            </div>
+            <div class="search-bar">
+                <form action="../search.html" method="get">
+                    <input type="text" name="q" placeholder="Search games...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- 游戏分类导航 -->
+    <section class="categories-nav">
+        <div class="container">
+            <ul class="categories-list category-filter">
+                <li><button onclick="window.location.href='../index.html'" class="category-btn"><i class="fas fa-home"></i> All Games</button></li>
+                <!-- 注意：将游戏所属的分类按钮标记为active -->
+                <li><button onclick="window.location.href='../index.html?category=action'" class="category-btn">Action</button></li>
+                <li><button onclick="window.location.href='../index.html?category=puzzle'" class="category-btn">Puzzle</button></li>
+                <li><button onclick="window.location.href='../index.html?category=racing'" class="category-btn">Racing</button></li>
+                <li><button onclick="window.location.href='../index.html?category=sports'" class="category-btn">Sports</button></li>
+                <li><button onclick="window.location.href='../index.html?category=strategy'" class="category-btn">Strategy</button></li>
+                <li><button onclick="window.location.href='../index.html?category=horror'" class="category-btn">Horror</button></li>
+                <li><button onclick="window.location.href='../index.html?category=adventure'" class="category-btn">Adventure</button></li>
+                <li><button onclick="window.location.href='../index.html?category=casual'" class="category-btn">Casual</button></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 游戏内容区域 -->
+    <section class="game-page">
+        <div class="container">
+            <!-- 游戏标题和面包屑 -->
+            <div class="game-header">
+                <h1>Mahjongg Solitaire</h1>
+                <div class="breadcrumbs">
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html">Games</a>
+                    <a href="../index.html?category=Puzzle Games">Puzzle Games</a>
+                    <span>Mahjongg Solitaire</span>
+                </div>
+            </div>
+
+            <!-- 游戏内容 -->
+            <div class="game-content-wrapper">
+                <!-- 游戏主要内容区 -->
+                <div class="game-main-column">
+                    <!-- 游戏框架 -->
+                    <div class="game-frame">
+                        <iframe 
+                            src="https://www.crazygames.com/embed/mahjongg-solitaire" 
+                            frameborder="0" 
+                            allow="gamepad *; autoplay; fullscreen" 
+                            allowfullscreen
+                            sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            importance="high"
+                            title="Mahjongg Solitaire Online Game"></iframe>
+                        <div class="loading-indicator">
+                            <i class="fas fa-spinner fa-spin fa-3x"></i>
+                            <p>Loading game...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏控制区 -->
+                    <div class="game-controls">
+                        <button class="control-btn fullscreen-btn" id="fullscreen-btn">
+                            <i class="fas fa-expand"></i> Fullscreen
+                        </button>
+                        <div class="game-info-box">
+                            <span class="game-category"><i class="fas fa-tag"></i> Puzzle Games</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏描述 -->
+                    <div class="game-description">
+                        <p>Mahjongg Solitaire is an online mahjong puzzle board game featuring traditional rules and modern visuals. There are no shuffles, and the game is timed, but the game's pace is relaxed.
+
+How to Play Mahjongg Solitaire
+Spot the patterns
+
+Mahjong is a tricky puzzle game. There are so many tiles, many of which look the same but feature slight differences. Along with the need to spot these patterns, you can’t move any pieces with both sides blocked. The left or right side needs to be accessible, at least.
+
+Use hints when you’re stuck
+
+Mahjongg Solitaire features hints if you get stuck, but unlike some other mahjong games, it does not have a shuffle feature. The games are also timed, meaning there is some urgency to how many tiles you can match.
+
+When the game ends, you’ll get a score for the tiles you matched and a bonus for how far you got in the game before your time ran out.
+
+Tile groups in Mahjongg Solitaire
+Mahjongg Solitaire features 144 tiles divided primarily into three suits. The primary suits are:
+
+Dots - feature circles
+Bamboo - feature lines
+Characters - feature Chinese characters
+In Mahjongg Solitaire, you’ll also notice special tiles that can be matched even without the same image. These are highlighted in blue or green.
+
+More Games Like This
+Mahjong Solitaire is an excellent choice for a beginner or regular Mahjong enthusiast. However, there are many other titles in our collection of Mahjong games such as Mahjong. Other puzzle games you may like include board games such as Yahtzee Online, Rummikub, and Ludo.
+
+Release Date
+October 2016
+
+Platform
+Web browser (desktop and mobile). We also have the Android version.
+
+Last Updated
+Aug 03, 2022
+
+Controls
+Use the left mouse button to interact.
+
+FAQ
+Is it spelled mahjong or mahjongg?
+Both words are correct and are used to describe the same game.
+Is Mahjongg Solitaire a difficult game?
+Mahjong is generally a tricky game, but this is probably a medium-difficulty mahjong game compared with others. There are no shuffles, but you have 10 minutes and unlimited hints which balances the game nicely.
+Is Mahjong Solitaire a free game?
+Yes, you can play Mahjong Solitaire online for free at CrazyGames.
+
+Is Mahjong good for the brain?
+Puzzle games are often cited as keeping the mind sharp and maintaining brain health.</p>
+                        
+                        <p>操作方法: 根据游戏类型而定，通常使用鼠标点击或键盘方向键控制。</p>
+                        
+                        <p>特点:
+                        <br>- 免费在线游戏，无需下载
+                        <br>- 支持全屏模式
+                        <br>- 流畅的游戏体验
+                        <br>- 适合所有年龄段的玩家</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript文件 -->
+    <script src="../js/main.js"></script>
+    <script src="../js/games.js"></script>
+    <script src="../js/game-nav.js"></script>
+    <script src="../js/sidebar-games.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+/**
+ * Free Mini Games - Left Alignment Fix
+ * Forces navigation to align with left edge
+ * 2024-04-02
+ */
+
+/* 强制容器左对齐 */
+.categories-nav .container {
+    justify-content: flex-start !important;
+    padding-left: 15px !important;
+}
+
+/* 确保第一个按钮与左侧完全对齐 */
+.categories-list {
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* 移除导航区域可能的左右边距 */
+.categories-nav {
+    width: 100% !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* 修复可能的宽度溢出问题 */
+body, html {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* 统一所有容器的左侧边距 */
+.site-header .container,
+.categories-nav .container,
+.game-section .container {
+    margin: 0 auto !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    box-sizing: border-box !important;
+    max-width: 1200px !important;
+}
+
+/* 确保header区域左对齐 */
+.site-header {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 确保游戏区域左对齐 */
+.game-section {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 强制导航背景延伸到屏幕边缘 */
+.categories-nav {
+    width: 100vw !important;
+    position: relative !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    background-color: #1e1e1e !important;
+}
+
+/* 确保导航容器内容左对齐 */
+.categories-nav .container {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 1200px !important;
+    width: 100% !important;
+}
+
+/* 移动设备适配 */
+@media (max-width: 768px) {
+    .site-header .container,
+    .categories-nav .container,
+    .game-section .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
+
+/* 强制移除内部容器可能的左右边距 */
+.categories-list li:first-child {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+} 

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squid Game Online - Free Mini Games</title>
+    <meta name="description" content="Play Squid Game Online online for free at Free Mini Games. Squid Game Online is a free multiplayer survival game. Compete in 7 minigames with 30 players based on the viral Netflix show Squid Game. If you fail any of the challenges, you will be eliminated by the Pink Soldiers.">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <style>
+        /* Prevent content flash during CSS loading */
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body.css-loaded {
+            opacity: 1;
+        }
+        
+        /* 游戏加载动画 */
+        .loading-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        /* 确保游戏iframe始终在上层 */
+        .game-frame iframe {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/dark-theme.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/fixes.css">
+    <link rel="stylesheet" href="../css/header-style.css">
+    <link rel="stylesheet" href="../css/nav-style.css">
+    <link rel="stylesheet" href="../css/search-fix.css">
+    <link rel="stylesheet" href="../css/title-fix.css">
+    <link rel="stylesheet" href="../css/style-overrides.css">
+    <link rel="stylesheet" href="../css/game-cards.css">
+    <link rel="stylesheet" href="../css/category-fix.css">
+    <link rel="stylesheet" href="../css/game-detail.css">
+    <link rel="stylesheet" href="../css/loading-fix.css">
+    <link rel="stylesheet" href="../css/game-detail-nav.css">
+    <link rel="stylesheet" href="../css/nav-hide.css">
+    <link rel="stylesheet" href="../css/header-fix.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google AdSense Code -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2406571508028686" crossorigin="anonymous"></script>
+</head>
+<body class="game-detail-page">
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html">
+                    <h1>Free Mini Games</h1>
+                </a>
+            </div>
+            <div class="search-bar">
+                <form action="../search.html" method="get">
+                    <input type="text" name="q" placeholder="Search games...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Game Categories Navigation -->
+    <section class="categories-nav">
+        <div class="container">
+            <ul class="categories-list category-filter">
+                <li><button onclick="window.location.href='../index.html'" class="category-btn"><i class="fas fa-home"></i> All Games</button></li>
+                <li><button onclick="window.location.href='../index.html?category=action'" class="category-btn active">Action</button></li>
+                <li><button onclick="window.location.href='../index.html?category=puzzle'" class="category-btn">Puzzle</button></li>
+                <li><button onclick="window.location.href='../index.html?category=racing'" class="category-btn">Racing</button></li>
+                <li><button onclick="window.location.href='../index.html?category=sports'" class="category-btn">Sports</button></li>
+                <li><button onclick="window.location.href='../index.html?category=strategy'" class="category-btn">Strategy</button></li>
+                <li><button onclick="window.location.href='../index.html?category=horror'" class="category-btn">Horror</button></li>
+                <li><button onclick="window.location.href='../index.html?category=adventure'" class="category-btn">Adventure</button></li>
+                <li><button onclick="window.location.href='../index.html?category=casual'" class="category-btn">Casual</button></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Top Ad Banner (Removed - Will be auto-inserted by AdSense) -->
+
+    <!-- Game Page Content -->
+    <section class="game-page">
+        <div class="container">
+            <!-- Game Title and Breadcrumbs -->
+            <div class="game-header">
+                <h1>Squid Game Online</h1>
+                <div class="breadcrumbs">
+                    <a href="../index.html">Home</a>
+                    <a href="../index.html">Games</a>
+                    <a href="../index.html?category=action">Action</a>
+                    <span>Squid Game Online</span>
+                </div>
+            </div>
+
+            <!-- Game Content -->
+            <div class="game-content-wrapper">
+                <!-- Game Main Column -->
+                <div class="game-main-column">
+                    <!-- Game Frame -->
+                    <div class="game-frame">
+                        <iframe 
+                            src="https://www.crazygames.com/embed/squid-game-online" 
+                            frameborder="0" 
+                            allow="gamepad *; autoplay; fullscreen" 
+                            allowfullscreen
+                            sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-presentation allow-same-origin allow-scripts"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            importance="high"
+                            title="Squid Game Online Online Game"></iframe>
+                        <div class="loading-indicator">
+                            <i class="fas fa-spinner fa-spin fa-3x"></i>
+                            <p>Loading game...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Controls -->
+                    <div class="game-controls">
+                        <button class="control-btn fullscreen-btn" id="fullscreen-btn">
+                            <i class="fas fa-expand"></i> Fullscreen
+                        </button>
+                        <div class="game-info-box">
+                            <span class="game-category"><i class="fas fa-tag"></i> Action</span>
+                            <span class="game-rating"><i class="fas fa-star"></i> 5</span>
+                            <span class="game-plays"><i class="fas fa-gamepad"></i> 0 Plays</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Game Description -->
+                    <div class="game-description">
+                        <p>Squid Game Online is a free multiplayer survival game. Compete in 7 minigames with 30 players based on the viral Netflix show Squid Game. If you fail any of the challenges, you will be eliminated by the Pink Soldiers.</p>
+                        
+                        <p>How to Play Squid Game: To enter a game, choose your region and nickname, then click join. You'll be added to a room and be moments away from playing in this unforgiving challenge! In the first mini-game, you'll have to sneak towards the doll without being seen in Red Light, Green Light.</p>
+                        
+                        <p>The Best Squid Game: The arrival of Squid Game to Netflix has led to several spin-off game titles for mobile and web browsers. Squid Game Online is one of the best and most popular Squid Games because of the immense online matches and challenging mini-games. Jump into the game and avoid being shot by the Masked Men!</p>
+                        
+                        <p>More Games Like This: Check out the version of Squid Game created by Kogama for another spin-off. Other popular online survival games include Impostor Royale and Fall Beans.</p>
+                        
+                        <p>Features:
+                        <br>- Survive seven grueling challenges
+                        <br>- Play online with 30 players in one room
+                        <br>- It's a multiplayer Squid game on the web
+                        <br>- The more you play, the more you'll master Squid Game!</p>
+                        
+                        <p>Games List:
+                        <br>- Red Light, Green Light
+                        <br>- Dalgona Candy
+                        <br>- Tug of War
+                        <br>- Marbles
+                        <br>- Glass Stepping Stones
+                        <br>- Judgment Night (if more than 2 alive players)
+                        <br>- Squid Game</p>
+                        
+                        <p>Last Updated: Mar 17, 2025</p>
+                        
+                        <p>Controls:
+                        <br>- WASD or arrow keys = move
+                        <br>- Space = jump
+                        <br>- LMB = scratch cookie / drag rope / hit
+                        <br>- E = pickup weapon
+                        <br>- G = drop weapon
+                        <br>- T = chat</p>
+                        
+                        <p>FAQ:
+                        <br>- What is the best Squid Game? Squid Game Online created by Dimofan is one of the most popular new games inspired by Squid Game.
+                        <br>- Can you play Squid Game with other players? Yes! Squid Game Online features multiplayer mini-games with other players via the internet.
+                        <br>- Is Squid Game Online free? Yes, you can play this game for free in your web browser - no download required.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Ad Banner (Removed - Will be auto-inserted by AdSense) -->
+
+    <!-- JavaScript Files -->
+    <script src="../js/main.js"></script>
+    <script src="../js/games.js"></script>
+    <script src="../js/game-nav.js"></script>
+    <script src="../js/sidebar-games.js"></script>
+</body>
+</html> 

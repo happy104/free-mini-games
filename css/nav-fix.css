@@ -1,0 +1,74 @@
+/**
+ * Free Mini Games - Navigation Alignment Fix
+ * Fixes alignment issues with navigation bar
+ * 2024-04-02
+ */
+
+/* 强制移除所有可能导致不对齐的边距 */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* 确保导航区域宽度与视口宽度一致 */
+.categories-nav {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* 重置导航容器的宽度和内边距 */
+.categories-nav .container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* 修复左侧和右侧的容器边距问题 */
+.container,
+.categories-wrapper,
+.game-section .container,
+.site-header .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* 确保导航包装器没有额外边距 */
+.categories-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+}
+
+/* 移除在移动设备上的左右边距 */
+@media (max-width: 768px) {
+    .categories-nav {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+    
+    .categories-nav .container {
+        padding: 0 10px;
+    }
+    
+    /* 确保分类列表容器与页面左侧对齐 */
+    .categories-wrapper {
+        padding-left: 0;
+    }
+    
+    /* 确保左侧第一个按钮完全贴合边缘 */
+    .categories-list li:first-child {
+        margin-left: 0;
+    }
+} 

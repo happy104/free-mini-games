@@ -1,0 +1,106 @@
+/**
+ * Free Mini Games - Navigation Bar Styles
+ * Used to fix styling issues with category navigation
+ * 2024-03-31
+ */
+
+/* Game categories navigation area */
+.categories-nav {
+    background-color: #222;
+    padding: 12px 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 90;
+    border-bottom: 1px solid #333;
+}
+
+.categories-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Hide Firefox scrollbar */
+    -ms-overflow-style: none; /* Hide IE scrollbar */
+}
+
+.categories-wrapper::-webkit-scrollbar {
+    display: none; /* Hide Chrome/Safari scrollbar */
+}
+
+/* Category list */
+.categories-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    min-width: max-content;
+}
+
+.categories-list li {
+    margin: 0 5px;
+}
+
+.categories-list li:first-child {
+    margin-left: 0;
+}
+
+.categories-list button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 80px;
+    text-align: center;
+}
+
+.categories-list button:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.categories-list button.active {
+    background-color: #0078D7;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 120, 215, 0.3);
+}
+
+/* Responsive navigation adjustments */
+@media (max-width: 768px) {
+    .categories-list {
+        justify-content: flex-start;
+    }
+    
+    .categories-wrapper {
+        padding: 0 10px 5px 10px; /* Add space for scrollbar */
+    }
+    
+    .categories-list button {
+        padding: 8px 15px;
+        font-size: 13px;
+        min-width: 70px;
+    }
+}
+
+/* Mobile card grid adjustments */
+@media (max-width: 576px) {
+    .categories-list li {
+        margin: 0 3px;
+    }
+    
+    .categories-list button {
+        padding: 6px 12px;
+        font-size: 12px;
+        min-width: 60px;
+    }
+} 

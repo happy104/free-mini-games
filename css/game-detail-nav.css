@@ -1,0 +1,269 @@
+/**
+ * Free Mini Games - Game Detail Navigation Styles
+ * 游戏详情页导航栏样式
+ * 2024-04-02
+ */
+
+/* 主导航样式 */
+.main-nav {
+    display: block;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav li {
+    margin-right: 20px;
+}
+
+.main-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    padding: 5px 0;
+    display: block;
+    position: relative;
+}
+
+.main-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #0078D7;
+    transition: width 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: #0078D7;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* 分类导航样式 - 与截图完全一致 */
+.categories-nav {
+    background-color: #222;
+    border-bottom: none;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.categories-list {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    flex-wrap: nowrap;
+    align-items: center;
+    list-style: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.categories-list::-webkit-scrollbar {
+    display: none;
+}
+
+.categories-list li {
+    margin: 0;
+}
+
+.category-btn {
+    padding: 10px 18px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-align: center;
+    box-shadow: none;
+    position: relative;
+    white-space: nowrap;
+}
+
+.category-btn::before {
+    display: none;
+}
+
+.category-btn:hover {
+    background-color: #333;
+    transform: none;
+    box-shadow: none;
+}
+
+.category-btn:hover::before {
+    transform: none;
+}
+
+.category-btn.active {
+    background-color: #0078D7;
+    color: #fff;
+    box-shadow: none;
+    font-weight: normal;
+}
+
+.category-btn.active::after {
+    display: none;
+}
+
+/* 修复容器对齐问题 */
+.categories-nav .container {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+/* 响应式调整 */
+@media (max-width: 992px) {
+    .main-nav {
+        display: none;
+    }
+    
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        color: #fff;
+        padding: 5px;
+        transition: color 0.2s ease;
+    }
+    
+    .menu-toggle:hover {
+        color: #0078D7;
+    }
+    
+    .site-header {
+        position: relative;
+    }
+    
+    .site-header.menu-open .main-nav {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #1a1a1a;
+        padding: 15px;
+        z-index: 100;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .site-header.menu-open .main-nav ul {
+        flex-direction: column;
+    }
+    
+    .site-header.menu-open .main-nav li {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .site-header.menu-open .main-nav a {
+        padding: 10px 0;
+        font-size: 18px;
+    }
+    
+    /* 分类导航在移动设备上的样式 */
+    .categories-list {
+        padding: 5px 0;
+    }
+    
+    .category-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .category-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo h1 {
+        font-size: 20px;
+    }
+    
+    .search-bar {
+        max-width: 180px;
+    }
+    
+    .back-to-games {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    
+    .game-header h1 {
+        font-size: 24px;
+    }
+    
+    .breadcrumbs {
+        font-size: 12px;
+    }
+}
+
+/* 游戏推荐返回按钮 */
+.back-to-games {
+    display: inline-flex;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    transition: background-color 0.2s;
+    font-size: 14px;
+}
+
+.back-to-games:hover {
+    background-color: #444;
+}
+
+.back-to-games i {
+    margin-right: 10px;
+}
+
+/* 添加面包屑导航样式 */
+.breadcrumbs {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #999;
+}
+
+.breadcrumbs a {
+    color: #0078D7;
+    text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbs span {
+    color: #999;
+}
+
+/* 游戏标题样式 */
+.game-header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #fff;
+} 
